@@ -10,27 +10,26 @@ export async function proxy(request: NextRequest) {
   const isLoginRoute = pathname === "/login";
   const isRootRoute = pathname === "/";
 
-  // Root route: redirect based on auth status
+  // Root route: redirect to dashboard if already authenticated, else allow public access
   if (isRootRoute) {
-    if (!sessionToken) {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
-    try {
-      const sessionResponse = await fetch(
-        new URL("/api/auth/get-session", request.url).toString(),
-        { headers: { cookie: request.headers.get("cookie") || "" } }
-      );
-      if (sessionResponse.ok) {
-        const session = await sessionResponse.json();
-        if (session?.user) {
-          const redirectUrl = session.user.role === "admin" ? "/admin" : "/dashboard";
-          return NextResponse.redirect(new URL(redirectUrl, request.url));
+    if (sessionToken) {
+      try {
+        const sessionResponse = await fetch(
+          new URL("/api/auth/get-session", request.url).toString(),
+          { headers: { cookie: request.headers.get("cookie") || "" } }
+        );
+        if (sessionResponse.ok) {
+          const session = await sessionResponse.json();
+          if (session?.user) {
+            const redirectUrl = session.user.role === "admin" ? "/admin" : "/dashboard";
+            return NextResponse.redirect(new URL(redirectUrl, request.url));
+          }
         }
+      } catch {
+        // Fall through to public landing page
       }
-    } catch {
-      // Fall through to login
     }
-    return NextResponse.redirect(new URL("/login", request.url));
+    return NextResponse.next();
   }
 
   // Fast path: no session token and trying to access protected routes

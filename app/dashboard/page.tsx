@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AppHeader } from "@/components/app-header";
 import { AppSidebar } from "@/components/app-sidebar";
@@ -14,10 +15,63 @@ import {
   User,
   Zap,
   ArrowRight,
+  CreditCard,
+  CheckCircle2,
+  AlertCircle,
+  Loader2
 } from "lucide-react";
+import { toast } from "sonner";
 
 export default function UserDashboard() {
   const { data: session, isPending } = authClient.useSession();
+  const [subData, setSubData] = useState<any>(null);
+  const [loadingSub, setLoadingSub] = useState(true);
+  const [upgrading, setUpgrading] = useState(false);
+
+  const fetchSubscriptionStatus = async () => {
+    setLoadingSub(true);
+    try {
+      const res = await fetch("/api/subscription/status");
+      const data = await res.json();
+      if (data.success) {
+        setSubData(data);
+      }
+    } catch (error) {
+      console.error("Failed to fetch subscription status:", error);
+    } finally {
+      setLoadingSub(false);
+    }
+  };
+
+  useEffect(() => {
+    if (session?.user) {
+      fetchSubscriptionStatus();
+    }
+  }, [session]);
+
+  const handleSimulateCheckout = async () => {
+    setUpgrading(true);
+    try {
+      const res = await fetch("/api/subscription/simulate-checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ plan: "Pro" })
+      });
+      const data = await res.json();
+      if (data.success) {
+        toast.success("Simulation Checkout Successful! Unlocked Creator Pro.");
+        fetchSubscriptionStatus();
+      } else {
+        toast.error(data.message || "Failed to update subscription.");
+      }
+    } catch {
+      toast.error("Error communicating with checkout simulation endpoint.");
+    } finally {
+      setUpgrading(false);
+    }
+  };
 
   if (isPending) {
     return (
@@ -57,7 +111,7 @@ export default function UserDashboard() {
                     className={buttonVariants({
                       variant: "default",
                       size: "sm",
-                      className: "bg-amber-600 hover:bg-amber-500 text-primary-foreground font-medium gap-1 py-1.5 px-2.5 rounded-lg text-xs h-7"
+                      className: "bg-amber-600 hover:bg-amber-500 text-primary-foreground font-medium gap-1.5 py-1.5 px-2.5 rounded-lg text-xs h-7"
                     })}
                   >
                     <Shield className="size-3.5" /> Admin Console
@@ -84,11 +138,13 @@ export default function UserDashboard() {
                   <div className="flex items-center justify-between px-2.5 py-2">
                     <div className="flex items-center gap-2 min-w-0">
                       <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-primary/10">
-                        <Activity className="size-3 text-primary" />
+                        <CreditCard className="size-3 text-primary" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Active Tasks</p>
-                        <p className="text-sm font-bold text-foreground leading-tight">12</p>
+                        <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">License Tier</p>
+                        <p className="text-sm font-bold text-foreground leading-tight">
+                          {loadingSub ? "Loading..." : subData?.active ? `${subData?.plan} Tier` : "Free Trial"}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -108,7 +164,7 @@ export default function UserDashboard() {
                 </Card>
               </div>
 
-              {/* Details & Admin Verification Card */}
+              {/* Details & Subscription Card */}
               <div className="grid gap-3 grid-cols-1 md:grid-cols-2">
                 <Card className="bg-card text-card-foreground">
                   <CardHeader className="px-3 pt-3 pb-2">
@@ -135,29 +191,62 @@ export default function UserDashboard() {
                   </CardContent>
                 </Card>
 
+                {/* Subscription Card */}
                 <Card className="bg-card text-card-foreground flex flex-col justify-between">
                   <CardHeader className="px-3 pt-3 pb-2">
-                    <div className="flex items-center gap-1.5 rounded-full w-fit bg-amber-500/10 px-1.5 py-0.5 text-[10px] text-amber-600 dark:text-amber-400 font-medium">
-                      <Shield className="size-3" /> Security Testing
+                    <div className="flex items-center gap-1.5">
+                      <CreditCard className="size-3.5 text-primary" />
+                      <CardTitle className="text-sm font-bold text-foreground">Subscription Management</CardTitle>
                     </div>
-                    <CardTitle className="text-sm font-bold text-foreground mt-2">Admin Access Verification</CardTitle>
                     <CardDescription className="text-muted-foreground text-[10px]">
-                      Test your role restrictions by attempting to navigate to the restricted administrative page.
+                      Manage and verify your desktop app licenses.
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="text-muted-foreground text-xs px-3 pb-2 pt-0">
-                    Standard users will be automatically blocked by the routing proxy middleware and redirected to a forbidden page, while accounts with the `admin` role are permitted access.
+                  <CardContent className="text-xs px-3 pb-2 pt-0 space-y-2">
+                    {loadingSub ? (
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <Loader2 className="size-3 animate-spin text-primary" />
+                        <span>Fetching subscription state...</span>
+                      </div>
+                    ) : subData?.active ? (
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 text-emerald-500 font-semibold bg-emerald-500/10 rounded-md p-2">
+                          <CheckCircle2 className="size-4 shrink-0" />
+                          <span>Active Subscription Plan ({subData?.plan})</span>
+                        </div>
+                        <div className="text-muted-foreground text-[11px] space-y-1 pl-1">
+                          <p>Status: <span className="font-bold text-foreground">Active</span></p>
+                          <p>Expires: <span className="font-bold text-foreground">{new Date(subData?.expiresAt).toLocaleDateString()}</span> ({subData?.daysRemaining} days left)</p>
+                          <p className="text-[10px] text-emerald-400 mt-1">✓ Unlimited exports (1080p, 4K) unlocked in the desktop app.</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 text-amber-500 font-semibold bg-amber-500/10 rounded-md p-2">
+                          <AlertCircle className="size-4 shrink-0" />
+                          <span>No Active Subscription (Free Trial)</span>
+                        </div>
+                        <p className="text-muted-foreground text-[11px] pl-1">
+                          Upgrade to Pro to unlock unlimited resolution exports (1080p, 4K), deep video analytics, and smart filters in your MediaFlow desktop app.
+                        </p>
+                      </div>
+                    )}
                   </CardContent>
-                  <div className="px-3 pb-3 pt-0">
-                    <a
-                      href="/admin"
-                      className={buttonVariants({
-                        variant: "default",
-                        className: "w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium gap-1.5 group py-2 rounded-lg flex items-center justify-center text-xs"
-                      })}
-                    >
-                      Try Accessing Admin Page <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
-                    </a>
+                  <div className="px-3 pb-3 pt-1">
+                    {!loadingSub && !subData?.active && (
+                      <Button
+                        onClick={handleSimulateCheckout}
+                        disabled={upgrading}
+                        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold gap-1.5 py-2 rounded-lg flex items-center justify-center text-xs shadow-lg shadow-blue-500/15"
+                      >
+                        {upgrading ? <Loader2 className="size-3.5 animate-spin" /> : "💎 Upgrade to Pro (Simulate Checkout)"}
+                      </Button>
+                    )}
+                    {subData?.active && (
+                      <div className="text-[10px] text-muted-foreground text-center py-1">
+                        Use your registered credentials inside the desktop app sidebar to synchronize your Pro license.
+                      </div>
+                    )}
                   </div>
                 </Card>
               </div>
