@@ -70,6 +70,8 @@ export async function GET(request: Request) {
       plan,
       expiresAt,
       daysRemaining,
+      status,
+      cancelAtPeriodEnd: !!user.cancelAtPeriodEnd,
       user: {
         id: session.user.id,
         name: session.user.name,

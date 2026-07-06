@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,8 +12,10 @@ import { Loader2, ShieldCheck, Database, KeyRound, Mail, User } from "lucide-rea
 import { toast } from "sonner";
 import { ThemeToggle } from "@/components/theme-toggle";
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callback = searchParams.get("callback");
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,8 +40,8 @@ export default function LoginPage() {
       } else {
         toast.success("Welcome back!");
         router.refresh();
-        // Role-based redirect
-        const redirectUrl = data?.user?.role === "admin" ? "/admin" : "/dashboard";
+        // Role-based redirect or callback redirect
+        const redirectUrl = callback || (data?.user?.role === "admin" ? "/admin" : "/dashboard");
         router.push(redirectUrl);
       }
     } catch (err: any) {
@@ -69,7 +71,7 @@ export default function LoginPage() {
       } else {
         toast.success("Registration successful!");
         router.refresh();
-        router.push("/dashboard");
+        router.push(callback || "/dashboard");
       }
     } catch (err: any) {
       toast.error(err.message || "An unexpected error occurred");
@@ -270,5 +272,20 @@ export default function LoginPage() {
         </Card>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-screen items-center justify-center bg-[#070B14]">
+        <div className="flex flex-col items-center gap-2">
+          <Loader2 className="size-8 animate-spin text-blue-500" />
+          <span className="text-sm text-slate-400">Loading secure sign-in...</span>
+        </div>
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }

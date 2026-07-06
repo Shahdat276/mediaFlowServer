@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
-import { admin } from "better-auth/plugins";
+import { admin, bearer } from "better-auth/plugins";
 import { getMongoClient, getDb } from "./mongodb";
 
 const client = getMongoClient();
@@ -15,8 +15,12 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
+  advanced: {
+    disableOriginCheck: true,
+  },
   plugins: [
-    admin()
+    admin(),
+    bearer()
   ],
 });
 export type Auth = typeof auth;

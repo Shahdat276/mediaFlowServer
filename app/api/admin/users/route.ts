@@ -25,6 +25,9 @@ export async function GET() {
       name: u.name || "",
       email: u.email || "",
       role: u.role || "user",
+      subscriptionPlan: u.subscriptionPlan || "Free Tier",
+      subscriptionStatus: u.subscriptionStatus || "inactive",
+      subscriptionExpiresAt: u.subscriptionExpiresAt || null,
       createdAt: u.createdAt ? new Date(u.createdAt).toISOString() : "",
     }));
 

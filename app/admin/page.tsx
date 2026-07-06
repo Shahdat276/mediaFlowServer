@@ -129,7 +129,7 @@ export default function AdminDashboard() {
               </div>
 
               {/* Quick Access Cards */}
-              <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-4">
+              <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-4">
                 <Link href="/admin/users">
                   <div className="group rounded-lg bg-card p-4 hover:bg-amber-500/5 transition-all cursor-pointer">
                     <div className="flex items-center justify-between mb-2">
@@ -152,6 +152,18 @@ export default function AdminDashboard() {
                     </div>
                     <h3 className="text-sm font-bold text-foreground">Subscription Plans</h3>
                     <p className="text-[10px] text-muted-foreground mt-0.5">Create and manage pricing plans</p>
+                  </div>
+                </Link>
+                <Link href="/admin/transactions">
+                  <div className="group rounded-lg bg-card p-4 hover:bg-amber-500/5 transition-all cursor-pointer">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex size-9 items-center justify-center rounded-lg bg-amber-500/10">
+                        <CreditCard className="size-4 text-amber-500" />
+                      </div>
+                      <ArrowRight className="size-4 text-muted-foreground group-hover:text-amber-500 transition-colors" />
+                    </div>
+                    <h3 className="text-sm font-bold text-foreground">Payment Verifications</h3>
+                    <p className="text-[10px] text-muted-foreground mt-0.5">Approve bKash/Nagad manual TxnIDs</p>
                   </div>
                 </Link>
                 <Link href="/admin/settings">

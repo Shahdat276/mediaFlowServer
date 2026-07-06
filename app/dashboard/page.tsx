@@ -8,6 +8,7 @@ import { AppHeader } from "@/components/app-header";
 import { AppSidebar } from "@/components/app-sidebar";
 import { AppFooter } from "@/components/app-footer";
 import { MobileSidebarProvider } from "@/components/mobile-sidebar-provider";
+import { useRouter } from "next/navigation";
 import {
   Activity,
   Settings,
@@ -23,10 +24,11 @@ import {
 import { toast } from "sonner";
 
 export default function UserDashboard() {
+  const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
   const [subData, setSubData] = useState<any>(null);
   const [loadingSub, setLoadingSub] = useState(true);
-  const [upgrading, setUpgrading] = useState(false);
+  const [managing, setManaging] = useState(false);
 
   const fetchSubscriptionStatus = async () => {
     setLoadingSub(true);
@@ -49,27 +51,45 @@ export default function UserDashboard() {
     }
   }, [session]);
 
-  const handleSimulateCheckout = async () => {
-    setUpgrading(true);
+  const handleCancelAutoRenew = async () => {
+    setManaging(true);
     try {
-      const res = await fetch("/api/subscription/simulate-checkout", {
+      const res = await fetch("/api/subscription/cancel", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ plan: "Pro" })
+        headers: { "Content-Type": "application/json" }
       });
       const data = await res.json();
       if (data.success) {
-        toast.success("Simulation Checkout Successful! Unlocked Creator Pro.");
+        toast.success(data.message || "Auto-renewal cancelled successfully.");
         fetchSubscriptionStatus();
       } else {
-        toast.error(data.message || "Failed to update subscription.");
+        toast.error(data.message || "Failed to cancel renewal.");
       }
     } catch {
-      toast.error("Error communicating with checkout simulation endpoint.");
+      toast.error("Failed to connect to subscription cancel endpoint.");
     } finally {
-      setUpgrading(false);
+      setManaging(false);
+    }
+  };
+
+  const handleReactivateAutoRenew = async () => {
+    setManaging(true);
+    try {
+      const res = await fetch("/api/subscription/reactivate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
+      });
+      const data = await res.json();
+      if (data.success) {
+        toast.success(data.message || "Auto-renewal reactivated successfully.");
+        fetchSubscriptionStatus();
+      } else {
+        toast.error(data.message || "Failed to reactivate renewal.");
+      }
+    } catch {
+      toast.error("Failed to connect to subscription reactivation endpoint.");
+    } finally {
+      setManaging(false);
     }
   };
 
@@ -210,15 +230,43 @@ export default function UserDashboard() {
                       </div>
                     ) : subData?.active ? (
                       <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-emerald-500 font-semibold bg-emerald-500/10 rounded-md p-2">
-                          <CheckCircle2 className="size-4 shrink-0" />
-                          <span>Active Subscription Plan ({subData?.plan})</span>
+                        {subData?.cancelAtPeriodEnd ? (
+                          <>
+                            <div className="flex items-center gap-2 text-amber-500 font-semibold bg-amber-500/10 rounded-md p-2">
+                              <AlertCircle className="size-4 shrink-0" />
+                              <span>Ending Subscription Plan</span>
+                            </div>
+                            <div className="text-muted-foreground text-[11px] space-y-1 pl-1">
+                              <p>Plan Name: <span className="font-bold text-foreground">{subData?.plan}</span></p>
+                              <p>Auto-Renewal: <span className="font-bold text-amber-500">Disabled (Auto-renew off)</span></p>
+                              <p>Access Ends: <span className="font-bold text-foreground">{new Date(subData?.expiresAt).toLocaleDateString()}</span> ({subData?.daysRemaining} days left)</p>
+                              <p className="text-[10px] text-amber-400 mt-1">⚠ Access will lock completely at the end of the billing period.</p>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="flex items-center gap-2 text-emerald-500 font-semibold bg-emerald-500/10 rounded-md p-2">
+                              <CheckCircle2 className="size-4 shrink-0" />
+                              <span>Active Subscription Plan</span>
+                            </div>
+                            <div className="text-muted-foreground text-[11px] space-y-1 pl-1">
+                              <p>Plan Name: <span className="font-bold text-foreground">{subData?.plan}</span></p>
+                              <p>Auto-Renewal: <span className="font-bold text-emerald-500">Active (Auto-renews)</span></p>
+                              <p>Next Charge Date: <span className="font-bold text-foreground">{new Date(subData?.expiresAt).toLocaleDateString()}</span> ({subData?.daysRemaining} days left)</p>
+                              <p className="text-[10px] text-emerald-400 mt-1">✓ Unlimited exports (1080p, 4K) unlocked in the desktop app.</p>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    ) : subData?.status === "pending_verification" ? (
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 text-amber-500 font-semibold bg-amber-500/10 rounded-md p-2 animate-pulse">
+                          <AlertCircle className="size-4 shrink-0" />
+                          <span>Payment Verification Pending</span>
                         </div>
-                        <div className="text-muted-foreground text-[11px] space-y-1 pl-1">
-                          <p>Status: <span className="font-bold text-foreground">Active</span></p>
-                          <p>Expires: <span className="font-bold text-foreground">{new Date(subData?.expiresAt).toLocaleDateString()}</span> ({subData?.daysRemaining} days left)</p>
-                          <p className="text-[10px] text-emerald-400 mt-1">✓ Unlimited exports (1080p, 4K) unlocked in the desktop app.</p>
-                        </div>
+                        <p className="text-muted-foreground text-[11px] pl-1">
+                          Your bKash/Nagad payment submission is currently under review by our admin. Premium features will activate once approved.
+                        </p>
                       </div>
                     ) : (
                       <div className="space-y-2">
@@ -232,14 +280,40 @@ export default function UserDashboard() {
                       </div>
                     )}
                   </CardContent>
-                  <div className="px-3 pb-3 pt-1">
-                    {!loadingSub && !subData?.active && (
+                  <div className="px-3 pb-3 pt-1 space-y-2">
+                    {!loadingSub && !subData?.active && subData?.status !== "pending_verification" && (
                       <Button
-                        onClick={handleSimulateCheckout}
-                        disabled={upgrading}
+                        onClick={() => router.push("/checkout?plan=Pro&billing=yearly")}
                         className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold gap-1.5 py-2 rounded-lg flex items-center justify-center text-xs shadow-lg shadow-blue-500/15"
                       >
-                        {upgrading ? <Loader2 className="size-3.5 animate-spin" /> : "💎 Upgrade to Pro (Simulate Checkout)"}
+                        💎 Upgrade to Creator Pro
+                      </Button>
+                    )}
+                    {!loadingSub && subData?.status === "pending_verification" && (
+                      <Button
+                        disabled
+                        className="w-full bg-slate-800 text-slate-500 font-bold py-2 rounded-lg text-xs cursor-not-allowed"
+                      >
+                        ⏳ Verification in Progress
+                      </Button>
+                    )}
+                    {!loadingSub && subData?.active && !subData?.cancelAtPeriodEnd && (
+                      <Button
+                        onClick={handleCancelAutoRenew}
+                        disabled={managing}
+                        variant="destructive"
+                        className="w-full font-bold gap-1.5 py-2 rounded-lg flex items-center justify-center text-xs"
+                      >
+                        {managing ? <Loader2 className="size-3.5 animate-spin" /> : "Cancel Auto-Renewal"}
+                      </Button>
+                    )}
+                    {!loadingSub && subData?.active && subData?.cancelAtPeriodEnd && (
+                      <Button
+                        onClick={handleReactivateAutoRenew}
+                        disabled={managing}
+                        className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold gap-1.5 py-2 rounded-lg flex items-center justify-center text-xs shadow-lg shadow-emerald-500/10"
+                      >
+                        {managing ? <Loader2 className="size-3.5 animate-spin" /> : "Reactivate Auto-Renewal"}
                       </Button>
                     )}
                     {subData?.active && (
