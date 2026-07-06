@@ -77,7 +77,7 @@ export function AppSidebar() {
     <>
       {/* Brand + Toggle */}
       <div className={cn(
-        "flex items-center h-14 border-b border-border shrink-0",
+        "flex items-center h-14 shrink-0",
         collapsed ? "justify-center px-2" : "gap-2 px-4 sm:px-6"
       )}>
         <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
@@ -102,10 +102,10 @@ export function AppSidebar() {
 
       {/* User info */}
       <div className={cn(
-        "flex items-center border-b border-border shrink-0",
+        "flex items-center shrink-0",
         collapsed ? "justify-center px-2 py-4" : "gap-3 px-4 sm:px-6 py-4"
       )}>
-        <Avatar className="size-9 border border-border shrink-0">
+        <Avatar className="size-9 shrink-0">
           <AvatarFallback className="bg-primary/10 text-primary text-sm font-semibold">
             {userInitials}
           </AvatarFallback>
@@ -141,8 +141,8 @@ export function AppSidebar() {
                   : "gap-3 px-3 py-2.5 text-sm",
                 item.active
                   ? item.href === "/admin"
-                    ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
-                    : "bg-primary/10 text-primary border border-primary/20"
+                    ? "bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                    : "bg-primary/10 text-primary"
                   : "text-muted-foreground hover:text-foreground hover:bg-accent"
               )}
             >
@@ -166,7 +166,7 @@ export function AppSidebar() {
 
       {/* Logout */}
       <div className={cn(
-        "border-t border-border shrink-0",
+        "shrink-0",
         collapsed ? "p-2" : "p-3"
       )}>
         <Button
@@ -190,7 +190,7 @@ export function AppSidebar() {
       {/* Desktop sidebar */}
       <aside
         className={cn(
-          "hidden md:flex shrink-0 flex-col border-r border-border bg-sidebar transition-all duration-200",
+          "hidden md:flex shrink-0 flex-col bg-sidebar transition-all duration-200",
           collapsed ? "w-16" : "w-64"
         )}
       >
@@ -206,7 +206,7 @@ export function AppSidebar() {
             onClick={close}
           />
           {/* Drawer panel */}
-          <aside className="relative flex w-72 max-w-[85vw] h-full flex-col bg-sidebar border-r border-border animate-in slide-in-from-left duration-200">
+          <aside className="relative flex w-72 max-w-[85vw] h-full flex-col bg-sidebar animate-in slide-in-from-left duration-200">
             {/* Close button */}
             <Button
               variant="ghost"

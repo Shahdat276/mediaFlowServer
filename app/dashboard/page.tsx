@@ -44,7 +44,7 @@ export default function UserDashboard() {
           <main className="flex-1 overflow-y-auto">
             <div className="p-3 sm:p-4 md:p-6">
               {/* Page Title */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 border-b border-border mb-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 mb-4">
                 <div className="min-w-0 flex-1">
                   <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">Dashboard</h1>
                   <p className="text-muted-foreground text-[11px] truncate">
@@ -67,10 +67,10 @@ export default function UserDashboard() {
 
               {/* Stats Grid */}
               <div className="grid gap-2 grid-cols-1 sm:grid-cols-3 mb-3">
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <div className="flex items-center justify-between px-2.5 py-2">
                     <div className="flex items-center gap-2 min-w-0">
-                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-primary/10 border border-primary/20">
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-primary/10">
                         <User className="size-3 text-primary" />
                       </div>
                       <div className="min-w-0">
@@ -80,10 +80,10 @@ export default function UserDashboard() {
                     </div>
                   </div>
                 </Card>
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <div className="flex items-center justify-between px-2.5 py-2">
                     <div className="flex items-center gap-2 min-w-0">
-                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-primary/10 border border-primary/20">
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-primary/10">
                         <Activity className="size-3 text-primary" />
                       </div>
                       <div className="min-w-0">
@@ -93,10 +93,10 @@ export default function UserDashboard() {
                     </div>
                   </div>
                 </Card>
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <div className="flex items-center justify-between px-2.5 py-2">
                     <div className="flex items-center gap-2 min-w-0">
-                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-emerald-500/10">
                         <Settings className="size-3 text-emerald-500 animate-pulse" />
                       </div>
                       <div className="min-w-0">
@@ -110,21 +110,21 @@ export default function UserDashboard() {
 
               {/* Details & Admin Verification Card */}
               <div className="grid gap-3 grid-cols-1 md:grid-cols-2">
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <CardHeader className="px-3 pt-3 pb-2">
                     <CardTitle className="text-sm font-bold text-foreground">Profile Details</CardTitle>
                     <CardDescription className="text-muted-foreground text-[10px]">Better Auth Session payload</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-2.5 text-xs px-3 pb-3 pt-0">
-                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 py-0.5 border-b border-border">
+                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 py-0.5">
                       <span className="text-muted-foreground">Name</span>
                       <span className="text-foreground font-medium">{session?.user?.name}</span>
                     </div>
-                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 py-0.5 border-b border-border">
+                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 py-0.5">
                       <span className="text-muted-foreground">Email</span>
                       <span className="text-foreground font-medium break-all">{session?.user?.email}</span>
                     </div>
-                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 py-0.5 border-b border-border">
+                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 py-0.5">
                       <span className="text-muted-foreground">User ID</span>
                       <span className="text-muted-foreground font-mono text-[10px] break-all">{session?.user?.id}</span>
                     </div>
@@ -135,9 +135,9 @@ export default function UserDashboard() {
                   </CardContent>
                 </Card>
 
-                <Card className="border-border bg-card text-card-foreground flex flex-col justify-between">
+                <Card className="bg-card text-card-foreground flex flex-col justify-between">
                   <CardHeader className="px-3 pt-3 pb-2">
-                    <div className="flex items-center gap-1.5 rounded-full w-fit bg-amber-500/10 border border-amber-500/20 px-1.5 py-0.5 text-[10px] text-amber-600 dark:text-amber-400 font-medium">
+                    <div className="flex items-center gap-1.5 rounded-full w-fit bg-amber-500/10 px-1.5 py-0.5 text-[10px] text-amber-600 dark:text-amber-400 font-medium">
                       <Shield className="size-3" /> Security Testing
                     </div>
                     <CardTitle className="text-sm font-bold text-foreground mt-2">Admin Access Verification</CardTitle>

@@ -68,11 +68,11 @@ export default function AdminDashboard() {
           <main className="flex-1 overflow-y-auto">
             <div className="p-3 sm:p-4 md:p-6">
               {/* Page Header */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 border-b border-border mb-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 mb-4">
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 flex-wrap">
                     <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">Admin Portal</h1>
-                    <span className="rounded-full bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 text-[10px] text-amber-600 dark:text-amber-400 font-semibold">
+                    <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] text-amber-600 dark:text-amber-400 font-semibold">
                       System Console
                     </span>
                   </div>
@@ -80,17 +80,17 @@ export default function AdminDashboard() {
                     Active Session: {session?.user?.email}
                   </p>
                 </div>
-                <Button variant="outline" size="sm" onClick={fetchUsers} disabled={fetchingUsers} className="border-border bg-card text-foreground hover:bg-accent text-xs h-7">
+                <Button variant="outline" size="sm" onClick={fetchUsers} disabled={fetchingUsers} className="bg-card text-foreground hover:bg-accent text-xs h-7">
                   {fetchingUsers ? <Loader2 className="size-3 animate-spin" /> : "Refresh"}
                 </Button>
               </div>
 
               {/* Stats Row */}
               <div className="grid gap-2 grid-cols-1 sm:grid-cols-3 mb-4">
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <div className="flex items-center justify-between px-2.5 py-2">
                     <div className="flex items-center gap-2 min-w-0">
-                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 border border-amber-500/20">
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10">
                         <Users className="size-3 text-amber-500" />
                       </div>
                       <div className="min-w-0">
@@ -100,10 +100,10 @@ export default function AdminDashboard() {
                     </div>
                   </div>
                 </Card>
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <div className="flex items-center justify-between px-2.5 py-2">
                     <div className="flex items-center gap-2 min-w-0">
-                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 border border-amber-500/20">
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10">
                         <CreditCard className="size-3 text-amber-500" />
                       </div>
                       <div className="min-w-0">
@@ -113,10 +113,10 @@ export default function AdminDashboard() {
                     </div>
                   </div>
                 </Card>
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <div className="flex items-center justify-between px-2.5 py-2">
                     <div className="flex items-center gap-2 min-w-0">
-                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 border border-amber-500/20">
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10">
                         <ShieldAlert className="size-3 text-amber-500 animate-pulse" />
                       </div>
                       <div className="min-w-0">
@@ -131,9 +131,9 @@ export default function AdminDashboard() {
               {/* Quick Access Cards */}
               <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-4">
                 <Link href="/admin/users">
-                  <div className="group rounded-lg border border-border bg-card p-4 hover:border-amber-500/30 hover:bg-amber-500/5 transition-all cursor-pointer">
+                  <div className="group rounded-lg bg-card p-4 hover:bg-amber-500/5 transition-all cursor-pointer">
                     <div className="flex items-center justify-between mb-2">
-                      <div className="flex size-9 items-center justify-center rounded-lg bg-amber-500/10 border border-amber-500/20">
+                      <div className="flex size-9 items-center justify-center rounded-lg bg-amber-500/10">
                         <Users className="size-4 text-amber-500" />
                       </div>
                       <ArrowRight className="size-4 text-muted-foreground group-hover:text-amber-500 transition-colors" />
@@ -143,9 +143,9 @@ export default function AdminDashboard() {
                   </div>
                 </Link>
                 <Link href="/admin/plans">
-                  <div className="group rounded-lg border border-border bg-card p-4 hover:border-amber-500/30 hover:bg-amber-500/5 transition-all cursor-pointer">
+                  <div className="group rounded-lg bg-card p-4 hover:bg-amber-500/5 transition-all cursor-pointer">
                     <div className="flex items-center justify-between mb-2">
-                      <div className="flex size-9 items-center justify-center rounded-lg bg-amber-500/10 border border-amber-500/20">
+                      <div className="flex size-9 items-center justify-center rounded-lg bg-amber-500/10">
                         <CreditCard className="size-4 text-amber-500" />
                       </div>
                       <ArrowRight className="size-4 text-muted-foreground group-hover:text-amber-500 transition-colors" />
@@ -155,9 +155,9 @@ export default function AdminDashboard() {
                   </div>
                 </Link>
                 <Link href="/admin/settings">
-                  <div className="group rounded-lg border border-border bg-card p-4 hover:border-amber-500/30 hover:bg-amber-500/5 transition-all cursor-pointer">
+                  <div className="group rounded-lg bg-card p-4 hover:bg-amber-500/5 transition-all cursor-pointer">
                     <div className="flex items-center justify-between mb-2">
-                      <div className="flex size-9 items-center justify-center rounded-lg bg-amber-500/10 border border-amber-500/20">
+                      <div className="flex size-9 items-center justify-center rounded-lg bg-amber-500/10">
                         <Settings className="size-4 text-amber-500" />
                       </div>
                       <ArrowRight className="size-4 text-muted-foreground group-hover:text-amber-500 transition-colors" />
@@ -169,7 +169,7 @@ export default function AdminDashboard() {
               </div>
 
               {/* Security Log Terminal */}
-              <Card className="border-border bg-card text-card-foreground">
+              <Card className="bg-card text-card-foreground">
                 <CardHeader className="px-3 pt-3 pb-2">
                   <div className="flex items-center gap-1.5">
                     <Terminal className="size-3.5 text-amber-500" />
@@ -177,7 +177,7 @@ export default function AdminDashboard() {
                   </div>
                   <CardDescription className="text-muted-foreground text-[10px]">Realtime proxy interception trace</CardDescription>
                 </CardHeader>
-                <CardContent className="bg-muted rounded-lg border border-border p-2.5 font-mono text-[10px] text-muted-foreground space-y-1 overflow-x-auto mx-3 mb-3">
+                <CardContent className="bg-muted rounded-lg p-2.5 font-mono text-[10px] text-muted-foreground space-y-1 overflow-x-auto mx-3 mb-3">
                   <p className="text-muted-foreground/60 whitespace-nowrap">[2026-07-06T10:55:00] PROXY: Intercepted route request to /admin</p>
                   <p className="text-emerald-500 whitespace-nowrap">[2026-07-06T10:55:00] PROXY: Session cookie identified</p>
                   <p className="text-emerald-500 whitespace-nowrap">[2026-07-06T10:55:01] PROXY: API response verified user role = admin</p>

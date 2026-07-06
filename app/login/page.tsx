@@ -107,7 +107,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md space-y-4 sm:space-y-6">
         {/* Hero text */}
         <div className="flex flex-col items-center text-center space-y-2">
-          <div className="flex items-center gap-1.5 sm:gap-2 rounded-full bg-primary/10 border border-primary/20 px-2.5 sm:px-3 py-1 text-xs sm:text-sm text-primary font-semibold tracking-wide">
+          <div className="flex items-center gap-1.5 sm:gap-2 rounded-full bg-primary/10 px-2.5 sm:px-3 py-1 text-xs sm:text-sm text-primary font-semibold tracking-wide">
             <ShieldCheck className="size-3.5 sm:size-4" /> MediaFlow Secure Auth
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
@@ -119,10 +119,10 @@ export default function LoginPage() {
         </div>
 
         {/* Auth Card */}
-        <Card className="border-border bg-card text-card-foreground backdrop-blur-md">
+        <Card className="bg-card text-card-foreground backdrop-blur-md">
           <Tabs defaultValue="login" className="w-full">
             <CardHeader className="space-y-1 pb-4">
-              <TabsList className="grid w-full grid-cols-2 bg-muted border border-border p-1">
+              <TabsList className="grid w-full grid-cols-2 bg-muted p-1">
                 <TabsTrigger
                   value="login"
                   className="data-[state=active]:bg-card data-[state=active]:text-foreground text-muted-foreground transition-all font-medium py-2 rounded-md"
@@ -151,7 +151,7 @@ export default function LoginPage() {
                         placeholder="you@example.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="pl-10 border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
+                        className="pl-10 bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
                         required
                       />
                     </div>
@@ -168,7 +168,7 @@ export default function LoginPage() {
                         placeholder="••••••••"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="pl-10 border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
+                        className="pl-10 bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
                         required
                       />
                     </div>
@@ -199,7 +199,7 @@ export default function LoginPage() {
                         placeholder="John Doe"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="pl-10 border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
+                        className="pl-10 bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
                         required
                       />
                     </div>
@@ -214,7 +214,7 @@ export default function LoginPage() {
                         placeholder="you@example.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="pl-10 border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
+                        className="pl-10 bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
                         required
                       />
                     </div>
@@ -229,7 +229,7 @@ export default function LoginPage() {
                         placeholder="••••••••"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="pl-10 border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
+                        className="pl-10 bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
                         required
                       />
                     </div>
@@ -250,7 +250,7 @@ export default function LoginPage() {
         </Card>
 
         {/* Developer Seeding Utility Card */}
-        <Card className="border-dashed border-border bg-muted/50 text-muted-foreground p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <Card className="bg-muted/50 text-muted-foreground p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start gap-1.5 text-xs text-amber-500 font-semibold tracking-wide">
               <Database className="size-3.5" /> Seeding Assistant
@@ -263,7 +263,7 @@ export default function LoginPage() {
             variant="outline"
             onClick={triggerSeed}
             disabled={loading}
-            className="border-border bg-card hover:bg-accent text-foreground text-xs"
+            className="bg-card hover:bg-accent text-foreground text-xs"
           >
             {loading ? <Loader2 className="size-3 animate-spin mr-1" /> : "Seed Test DB"}
           </Button>

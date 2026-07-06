@@ -37,7 +37,7 @@ export function AppHeader() {
     : "U";
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-40 w-full bg-background/80 backdrop-blur-md">
       <div className="flex h-11 items-center justify-between px-3 sm:px-4">
         {/* Left: Hamburger + page title */}
         <div className="flex items-center gap-2">
@@ -61,7 +61,7 @@ export function AppHeader() {
         <div className="flex items-center gap-1.5 sm:gap-2">
           {/* User avatar + name - desktop only */}
           <div className="hidden sm:flex items-center gap-1.5">
-            <Avatar className="size-6 border border-border">
+            <Avatar className="size-6">
               <AvatarFallback className="bg-primary/10 text-primary text-[10px] font-semibold">
                 {userInitials}
               </AvatarFallback>

@@ -4,7 +4,7 @@ export function AppFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-border/60 bg-background shrink-0">
+    <footer className="mt-auto bg-background shrink-0">
       <div className="mx-auto flex flex-col sm:flex-row items-center justify-between gap-1.5 px-3 sm:px-4 py-2">
         <p className="flex items-center gap-1 text-[10px] text-muted-foreground text-center sm:text-left">
           &copy; {currentYear} MediaFlow. Built with{" "}

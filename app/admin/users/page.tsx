@@ -91,7 +91,7 @@ export default function AdminUsersPage() {
           <main className="flex-1 overflow-y-auto">
             <div className="p-3 sm:p-4 md:p-6">
               {/* Page Header */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 border-b border-border mb-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 mb-4">
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 flex-wrap">
                     <Users className="size-5 text-amber-500" />
@@ -102,7 +102,7 @@ export default function AdminUsersPage() {
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Button variant="outline" size="sm" onClick={fetchUsers} disabled={fetchingUsers} className="border-border bg-card text-foreground hover:bg-accent text-xs h-7">
+                  <Button variant="outline" size="sm" onClick={fetchUsers} disabled={fetchingUsers} className="bg-card text-foreground hover:bg-accent text-xs h-7">
                     {fetchingUsers ? <Loader2 className="size-3 animate-spin" /> : "Refresh"}
                   </Button>
                   <Button size="sm" onClick={() => setShowCreateDialog(true)} className="bg-amber-500 hover:bg-amber-600 text-white text-xs h-7">
@@ -113,10 +113,10 @@ export default function AdminUsersPage() {
 
               {/* Stats */}
               <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 mb-4">
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <div className="flex items-center justify-between px-2.5 py-2">
                     <div className="flex items-center gap-2 min-w-0">
-                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 border border-amber-500/20">
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10">
                         <Users className="size-3 text-amber-500" />
                       </div>
                       <div className="min-w-0">
@@ -126,10 +126,10 @@ export default function AdminUsersPage() {
                     </div>
                   </div>
                 </Card>
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <div className="flex items-center justify-between px-2.5 py-2">
                     <div className="flex items-center gap-2 min-w-0">
-                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-emerald-500/10">
                         <Shield className="size-3 text-emerald-500" />
                       </div>
                       <div className="min-w-0">
@@ -142,7 +142,7 @@ export default function AdminUsersPage() {
               </div>
 
               {/* Users Table */}
-              <Card className="border-border bg-card text-card-foreground">
+              <Card className="bg-card text-card-foreground">
                 <CardHeader className="px-3 pt-3 pb-2">
                   <CardTitle className="text-sm font-bold text-foreground">Database Users</CardTitle>
                   <CardDescription className="text-muted-foreground text-[10px]">
@@ -158,7 +158,7 @@ export default function AdminUsersPage() {
                     <div className="overflow-x-auto -mx-1">
                       <table className="w-full text-left text-xs min-w-[480px]">
                         <thead>
-                          <tr className="border-b border-border text-muted-foreground font-semibold">
+                          <tr className="text-muted-foreground font-semibold">
                             <th className="pb-2 pl-1">Name</th>
                             <th className="pb-2">Email</th>
                             <th className="pb-2">Role</th>
@@ -167,11 +167,11 @@ export default function AdminUsersPage() {
                         </thead>
                         <tbody>
                           {dbUsers.map((user) => (
-                            <tr key={user.id} className="border-b border-border hover:bg-accent/50 text-foreground">
+                            <tr key={user.id} className="hover:bg-accent/50 text-foreground">
                               <td className="py-2 pl-1 font-medium text-foreground whitespace-nowrap">{user.name}</td>
                               <td className="py-2 whitespace-nowrap">{user.email}</td>
                               <td className="py-2">
-                                <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${user.role === "admin" ? "bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400" : "bg-muted border border-border text-muted-foreground"}`}>
+                                <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${user.role === "admin" ? "bg-amber-500/10 text-amber-600 dark:text-amber-400" : "bg-muted text-muted-foreground"}`}>
                                   {user.role}
                                 </span>
                               </td>
@@ -194,34 +194,34 @@ export default function AdminUsersPage() {
       {showCreateDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowCreateDialog(false)} />
-          <div className="relative w-full max-w-sm rounded-lg border border-border bg-card">
-            <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
+          <div className="relative w-full max-w-sm rounded-lg bg-card">
+            <div className="flex items-center justify-between px-4 py-2.5">
               <h2 className="text-sm font-bold text-foreground">Create New Admin</h2>
               <button onClick={() => setShowCreateDialog(false)} className="text-muted-foreground hover:text-foreground"><X className="size-4" /></button>
             </div>
             <div className="p-4 space-y-3">
               <div>
                 <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Name</label>
-                <input type="text" value={newUser.name} onChange={(e) => setNewUser({ ...newUser, name: e.target.value })} placeholder="John Doe" className="mt-1 w-full rounded-md border border-border bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                <input type="text" value={newUser.name} onChange={(e) => setNewUser({ ...newUser, name: e.target.value })} placeholder="John Doe" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
               </div>
               <div>
                 <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Email</label>
-                <input type="email" value={newUser.email} onChange={(e) => setNewUser({ ...newUser, email: e.target.value })} placeholder="admin@example.com" className="mt-1 w-full rounded-md border border-border bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                <input type="email" value={newUser.email} onChange={(e) => setNewUser({ ...newUser, email: e.target.value })} placeholder="admin@example.com" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
               </div>
               <div>
                 <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Password</label>
-                <input type="password" value={newUser.password} onChange={(e) => setNewUser({ ...newUser, password: e.target.value })} placeholder="••••••••" className="mt-1 w-full rounded-md border border-border bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                <input type="password" value={newUser.password} onChange={(e) => setNewUser({ ...newUser, password: e.target.value })} placeholder="••••••••" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
               </div>
               <div>
                 <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Role</label>
-                <select value={newUser.role} onChange={(e) => setNewUser({ ...newUser, role: e.target.value })} className="mt-1 w-full rounded-md border border-border bg-background px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-amber-500">
+                <select value={newUser.role} onChange={(e) => setNewUser({ ...newUser, role: e.target.value })} className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-amber-500">
                   <option value="admin">Admin</option>
                   <option value="user">User</option>
                 </select>
               </div>
             </div>
-            <div className="flex items-center justify-end gap-2 border-t border-border px-4 py-2.5">
-              <Button variant="outline" size="sm" onClick={() => setShowCreateDialog(false)} className="text-xs h-7 border-border">Cancel</Button>
+            <div className="flex items-center justify-end gap-2 px-4 py-2.5">
+              <Button variant="outline" size="sm" onClick={() => setShowCreateDialog(false)} className="text-xs h-7">Cancel</Button>
               <Button size="sm" onClick={handleCreateUser} disabled={creating} className="bg-amber-500 hover:bg-amber-600 text-white text-xs h-7">
                 {creating ? <Loader2 className="size-3 animate-spin mr-1" /> : null}
                 {creating ? "Creating..." : "Create"}

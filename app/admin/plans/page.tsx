@@ -128,7 +128,7 @@ export default function AdminPlansPage() {
           <main className="flex-1 overflow-y-auto">
             <div className="p-3 sm:p-4 md:p-6">
               {/* Page Header */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 border-b border-border mb-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 mb-4">
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 flex-wrap">
                     <CreditCard className="size-5 text-amber-500" />
@@ -139,7 +139,7 @@ export default function AdminPlansPage() {
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Button variant="outline" size="sm" onClick={fetchPlans} disabled={fetchingPlans} className="border-border bg-card text-foreground hover:bg-accent text-xs h-7">
+                  <Button variant="outline" size="sm" onClick={fetchPlans} disabled={fetchingPlans} className="bg-card text-foreground hover:bg-accent text-xs h-7">
                     {fetchingPlans ? <Loader2 className="size-3 animate-spin" /> : "Refresh"}
                   </Button>
                   <Button size="sm" onClick={openCreatePlan} className="bg-amber-500 hover:bg-amber-600 text-white text-xs h-7">
@@ -150,10 +150,10 @@ export default function AdminPlansPage() {
 
               {/* Stats */}
               <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 mb-4">
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <div className="flex items-center justify-between px-2.5 py-2">
                     <div className="flex items-center gap-2 min-w-0">
-                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 border border-amber-500/20">
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10">
                         <CreditCard className="size-3 text-amber-500" />
                       </div>
                       <div className="min-w-0">
@@ -163,10 +163,10 @@ export default function AdminPlansPage() {
                     </div>
                   </div>
                 </Card>
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <div className="flex items-center justify-between px-2.5 py-2">
                     <div className="flex items-center gap-2 min-w-0">
-                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-emerald-500/10">
                         <CreditCard className="size-3 text-emerald-500" />
                       </div>
                       <div className="min-w-0">
@@ -179,7 +179,7 @@ export default function AdminPlansPage() {
               </div>
 
               {/* Plans Grid */}
-              <Card className="border-border bg-card text-card-foreground">
+              <Card className="bg-card text-card-foreground">
                 <CardHeader className="px-3 pt-3 pb-2">
                   <CardTitle className="text-sm font-bold text-foreground">All Plans</CardTitle>
                   <CardDescription className="text-muted-foreground text-[10px]">
@@ -196,7 +196,7 @@ export default function AdminPlansPage() {
                   ) : (
                     <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                       {plans.map((plan) => (
-                        <div key={plan.id} className={`rounded-lg border p-3 ${!plan.active ? "opacity-50" : ""}`}>
+                        <div key={plan.id} className={`rounded-lg p-3 ${!plan.active ? "opacity-50" : ""}`}>
                           <div className="flex items-start justify-between mb-2">
                             <div>
                               <h3 className="text-sm font-bold text-foreground">{plan.name}</h3>
@@ -215,8 +215,8 @@ export default function AdminPlansPage() {
                             <span className="text-lg font-extrabold text-foreground">৳{plan.price}</span>
                             <span className="text-[10px] text-muted-foreground">/{plan.period}</span>
                           </div>
-                          <div className="flex items-center gap-2 pt-2 border-t border-border">
-                            <span className={`rounded-full px-1.5 py-0.5 text-[9px] font-semibold ${plan.active ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400" : "bg-muted border border-border text-muted-foreground"}`}>
+                          <div className="flex items-center gap-2 pt-2">
+                            <span className={`rounded-full px-1.5 py-0.5 text-[9px] font-semibold ${plan.active ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" : "bg-muted text-muted-foreground"}`}>
                               {plan.active ? "Active" : "Inactive"}
                             </span>
                           </div>
@@ -236,8 +236,8 @@ export default function AdminPlansPage() {
       {showPlanDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowPlanDialog(false)} />
-          <div className="relative w-full max-w-md rounded-lg border border-border bg-card max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between border-b border-border px-4 py-2.5 sticky top-0 bg-card z-10">
+          <div className="relative w-full max-w-md rounded-lg bg-card max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between px-4 py-2.5 sticky top-0 bg-card z-10">
               <h2 className="text-sm font-bold text-foreground">{editingPlan ? "Edit Plan" : "Create Plan"}</h2>
               <button onClick={() => setShowPlanDialog(false)} className="text-muted-foreground hover:text-foreground"><X className="size-4" /></button>
             </div>
@@ -245,15 +245,15 @@ export default function AdminPlansPage() {
               <div className="grid grid-cols-2 gap-3">
                 <div className="col-span-2">
                   <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Plan Name</label>
-                  <input type="text" value={planForm.name} onChange={(e) => setPlanForm({ ...planForm, name: e.target.value })} placeholder="e.g. Pro, Enterprise" className="mt-1 w-full rounded-md border border-border bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                  <input type="text" value={planForm.name} onChange={(e) => setPlanForm({ ...planForm, name: e.target.value })} placeholder="e.g. Pro, Enterprise" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
                 </div>
                 <div>
                   <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Price (৳)</label>
-                  <input type="number" min="0" step="0.01" value={planForm.price} onChange={(e) => setPlanForm({ ...planForm, price: parseFloat(e.target.value) || 0 })} className="mt-1 w-full rounded-md border border-border bg-background px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                  <input type="number" min="0" step="0.01" value={planForm.price} onChange={(e) => setPlanForm({ ...planForm, price: parseFloat(e.target.value) || 0 })} className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
                 </div>
                 <div>
                   <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Period</label>
-                  <select value={planForm.period} onChange={(e) => setPlanForm({ ...planForm, period: e.target.value })} className="mt-1 w-full rounded-md border border-border bg-background px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-amber-500">
+                  <select value={planForm.period} onChange={(e) => setPlanForm({ ...planForm, period: e.target.value })} className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-amber-500">
                     <option value="month">/month</option>
                     <option value="year">/year</option>
                     <option value="week">/week</option>
@@ -263,17 +263,17 @@ export default function AdminPlansPage() {
               </div>
               <div>
                 <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Description</label>
-                <input type="text" value={planForm.description} onChange={(e) => setPlanForm({ ...planForm, description: e.target.value })} placeholder="Short description of the plan" className="mt-1 w-full rounded-md border border-border bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                <input type="text" value={planForm.description} onChange={(e) => setPlanForm({ ...planForm, description: e.target.value })} placeholder="Short description of the plan" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
               </div>
               <div>
                 <label className="flex items-center gap-1.5 cursor-pointer">
-                  <input type="checkbox" checked={planForm.active} onChange={(e) => setPlanForm({ ...planForm, active: e.target.checked })} className="rounded border-border accent-emerald-500" />
+                  <input type="checkbox" checked={planForm.active} onChange={(e) => setPlanForm({ ...planForm, active: e.target.checked })} className="rounded accent-emerald-500" />
                   <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Active</span>
                 </label>
               </div>
             </div>
-            <div className="flex items-center justify-end gap-2 border-t border-border px-4 py-2.5 sticky bottom-0 bg-card">
-              <Button variant="outline" size="sm" onClick={() => setShowPlanDialog(false)} className="text-xs h-7 border-border">Cancel</Button>
+            <div className="flex items-center justify-end gap-2 px-4 py-2.5 sticky bottom-0 bg-card">
+              <Button variant="outline" size="sm" onClick={() => setShowPlanDialog(false)} className="text-xs h-7">Cancel</Button>
               <Button size="sm" onClick={handleSavePlan} disabled={savingPlan} className="bg-amber-500 hover:bg-amber-600 text-white text-xs h-7">
                 {savingPlan ? <Loader2 className="size-3 animate-spin mr-1" /> : null}
                 {savingPlan ? "Saving..." : editingPlan ? "Update Plan" : "Create Plan"}

@@ -26,7 +26,7 @@ export function ThemeToggle({ className }: { className?: string }) {
   ] as const;
 
   return (
-    <div className={cn("inline-flex items-center rounded-lg border border-border bg-card p-1", className)}>
+    <div className={cn("inline-flex items-center rounded-lg bg-card p-1", className)}>
       {themes.map(({ value, icon: Icon, label }) => (
         <button
           key={value}

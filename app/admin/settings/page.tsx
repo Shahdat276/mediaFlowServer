@@ -31,7 +31,7 @@ export default function AdminSettingsPage() {
           <main className="flex-1 overflow-y-auto">
             <div className="p-3 sm:p-4 md:p-6">
               {/* Page Header */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 border-b border-border mb-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 mb-4">
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 flex-wrap">
                     <Settings className="size-5 text-amber-500" />
@@ -46,10 +46,10 @@ export default function AdminSettingsPage() {
               {/* Settings Cards */}
               <div className="grid gap-3 grid-cols-1 lg:grid-cols-2">
                 {/* Authentication */}
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <CardHeader className="px-4 pt-4 pb-2">
                     <div className="flex items-center gap-2">
-                      <div className="flex size-8 items-center justify-center rounded-lg bg-amber-500/10 border border-amber-500/20">
+                      <div className="flex size-8 items-center justify-center rounded-lg bg-amber-500/10">
                         <Shield className="size-4 text-amber-500" />
                       </div>
                       <div>
@@ -59,11 +59,11 @@ export default function AdminSettingsPage() {
                     </div>
                   </CardHeader>
                   <CardContent className="px-4 pb-4 pt-2 space-y-2">
-                    <div className="flex justify-between items-center py-1.5 border-b border-border">
+                    <div className="flex justify-between items-center py-1.5">
                       <span className="text-xs text-muted-foreground">Engine</span>
                       <span className="text-xs font-medium text-foreground">Better Auth v1.6.23</span>
                     </div>
-                    <div className="flex justify-between items-center py-1.5 border-b border-border">
+                    <div className="flex justify-between items-center py-1.5">
                       <span className="text-xs text-muted-foreground">Plugin</span>
                       <span className="text-xs font-medium text-foreground">Admin Plugin</span>
                     </div>
@@ -75,10 +75,10 @@ export default function AdminSettingsPage() {
                 </Card>
 
                 {/* Database */}
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <CardHeader className="px-4 pt-4 pb-2">
                     <div className="flex items-center gap-2">
-                      <div className="flex size-8 items-center justify-center rounded-lg bg-blue-500/10 border border-blue-500/20">
+                      <div className="flex size-8 items-center justify-center rounded-lg bg-blue-500/10">
                         <Database className="size-4 text-blue-500" />
                       </div>
                       <div>
@@ -88,11 +88,11 @@ export default function AdminSettingsPage() {
                     </div>
                   </CardHeader>
                   <CardContent className="px-4 pb-4 pt-2 space-y-2">
-                    <div className="flex justify-between items-center py-1.5 border-b border-border">
+                    <div className="flex justify-between items-center py-1.5">
                       <span className="text-xs text-muted-foreground">Driver</span>
                       <span className="text-xs font-medium text-foreground">mongodb (native)</span>
                     </div>
-                    <div className="flex justify-between items-center py-1.5 border-b border-border">
+                    <div className="flex justify-between items-center py-1.5">
                       <span className="text-xs text-muted-foreground">Max Pool Size</span>
                       <span className="text-xs font-medium text-foreground">10</span>
                     </div>
@@ -104,10 +104,10 @@ export default function AdminSettingsPage() {
                 </Card>
 
                 {/* Performance */}
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <CardHeader className="px-4 pt-4 pb-2">
                     <div className="flex items-center gap-2">
-                      <div className="flex size-8 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                      <div className="flex size-8 items-center justify-center rounded-lg bg-emerald-500/10">
                         <Gauge className="size-4 text-emerald-500" />
                       </div>
                       <div>
@@ -117,11 +117,11 @@ export default function AdminSettingsPage() {
                     </div>
                   </CardHeader>
                   <CardContent className="px-4 pb-4 pt-2 space-y-2">
-                    <div className="flex justify-between items-center py-1.5 border-b border-border">
+                    <div className="flex justify-between items-center py-1.5">
                       <span className="text-xs text-muted-foreground">Compression</span>
                       <span className="text-xs font-medium text-emerald-500">Enabled</span>
                     </div>
-                    <div className="flex justify-between items-center py-1.5 border-b border-border">
+                    <div className="flex justify-between items-center py-1.5">
                       <span className="text-xs text-muted-foreground">Package Optimization</span>
                       <span className="text-xs font-medium text-foreground">lucide-react, recharts</span>
                     </div>
@@ -133,10 +133,10 @@ export default function AdminSettingsPage() {
                 </Card>
 
                 {/* Security */}
-                <Card className="border-border bg-card text-card-foreground">
+                <Card className="bg-card text-card-foreground">
                   <CardHeader className="px-4 pt-4 pb-2">
                     <div className="flex items-center gap-2">
-                      <div className="flex size-8 items-center justify-center rounded-lg bg-red-500/10 border border-red-500/20">
+                      <div className="flex size-8 items-center justify-center rounded-lg bg-red-500/10">
                         <Lock className="size-4 text-red-500" />
                       </div>
                       <div>
@@ -146,11 +146,11 @@ export default function AdminSettingsPage() {
                     </div>
                   </CardHeader>
                   <CardContent className="px-4 pb-4 pt-2 space-y-2">
-                    <div className="flex justify-between items-center py-1.5 border-b border-border">
+                    <div className="flex justify-between items-center py-1.5">
                       <span className="text-xs text-muted-foreground">X-Content-Type-Options</span>
                       <span className="text-xs font-medium text-foreground">nosniff</span>
                     </div>
-                    <div className="flex justify-between items-center py-1.5 border-b border-border">
+                    <div className="flex justify-between items-center py-1.5">
                       <span className="text-xs text-muted-foreground">X-Frame-Options</span>
                       <span className="text-xs font-medium text-foreground">DENY</span>
                     </div>
