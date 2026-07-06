@@ -110,7 +110,7 @@ export default function UserDashboard() {
 
               {/* Details & Admin Verification Card */}
               <div className="grid gap-3 grid-cols-1 md:grid-cols-2">
-                <Card className="border-border bg-card text-card-foreground shadow-sm">
+                <Card className="border-border bg-card text-card-foreground">
                   <CardHeader className="px-3 pt-3 pb-2">
                     <CardTitle className="text-sm font-bold text-foreground">Profile Details</CardTitle>
                     <CardDescription className="text-muted-foreground text-[10px]">Better Auth Session payload</CardDescription>
@@ -135,7 +135,7 @@ export default function UserDashboard() {
                   </CardContent>
                 </Card>
 
-                <Card className="border-border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
+                <Card className="border-border bg-card text-card-foreground flex flex-col justify-between">
                   <CardHeader className="px-3 pt-3 pb-2">
                     <div className="flex items-center gap-1.5 rounded-full w-fit bg-amber-500/10 border border-amber-500/20 px-1.5 py-0.5 text-[10px] text-amber-600 dark:text-amber-400 font-medium">
                       <Shield className="size-3" /> Security Testing

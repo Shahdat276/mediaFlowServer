@@ -119,7 +119,7 @@ export default function LoginPage() {
         </div>
 
         {/* Auth Card */}
-        <Card className="border-border bg-card text-card-foreground backdrop-blur-md shadow-xl">
+        <Card className="border-border bg-card text-card-foreground backdrop-blur-md">
           <Tabs defaultValue="login" className="w-full">
             <CardHeader className="space-y-1 pb-4">
               <TabsList className="grid w-full grid-cols-2 bg-muted border border-border p-1">
@@ -177,7 +177,7 @@ export default function LoginPage() {
                 <CardFooter className="flex flex-col gap-3">
                   <Button
                     type="submit"
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium shadow-lg py-2.5 transition-all"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2.5 transition-all"
                     disabled={loading}
                   >
                     {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Sign In"}
@@ -238,7 +238,7 @@ export default function LoginPage() {
                 <CardFooter>
                   <Button
                     type="submit"
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium shadow-lg py-2.5 transition-all"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2.5 transition-all"
                     disabled={loading}
                   >
                     {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Create Account"}

@@ -206,7 +206,7 @@ export function AppSidebar() {
             onClick={close}
           />
           {/* Drawer panel */}
-          <aside className="relative flex w-72 max-w-[85vw] h-full flex-col bg-sidebar border-r border-border shadow-xl animate-in slide-in-from-left duration-200">
+          <aside className="relative flex w-72 max-w-[85vw] h-full flex-col bg-sidebar border-r border-border animate-in slide-in-from-left duration-200">
             {/* Close button */}
             <Button
               variant="ghost"

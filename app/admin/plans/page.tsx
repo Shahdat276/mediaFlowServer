@@ -179,7 +179,7 @@ export default function AdminPlansPage() {
               </div>
 
               {/* Plans Grid */}
-              <Card className="border-border bg-card text-card-foreground shadow-sm">
+              <Card className="border-border bg-card text-card-foreground">
                 <CardHeader className="px-3 pt-3 pb-2">
                   <CardTitle className="text-sm font-bold text-foreground">All Plans</CardTitle>
                   <CardDescription className="text-muted-foreground text-[10px]">
@@ -236,7 +236,7 @@ export default function AdminPlansPage() {
       {showPlanDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowPlanDialog(false)} />
-          <div className="relative w-full max-w-md rounded-lg border border-border bg-card shadow-lg max-h-[90vh] overflow-y-auto">
+          <div className="relative w-full max-w-md rounded-lg border border-border bg-card max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-border px-4 py-2.5 sticky top-0 bg-card z-10">
               <h2 className="text-sm font-bold text-foreground">{editingPlan ? "Edit Plan" : "Create Plan"}</h2>
               <button onClick={() => setShowPlanDialog(false)} className="text-muted-foreground hover:text-foreground"><X className="size-4" /></button>

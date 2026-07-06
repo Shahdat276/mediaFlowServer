@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 export default function UnauthorizedPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4 py-8">
-      <Card className="w-full max-w-md border-border bg-card text-card-foreground shadow-2xl">
+      <Card className="w-full max-w-md border-border bg-card text-card-foreground">
         <CardHeader className="flex flex-col items-center text-center pb-2">
           <div className="rounded-full bg-destructive/10 p-3 sm:p-4 text-destructive border border-destructive/20 mb-4 animate-bounce">
             <ShieldAlert size={40} className="sm:size-12" />

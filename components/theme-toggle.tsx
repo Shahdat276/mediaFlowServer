@@ -26,7 +26,7 @@ export function ThemeToggle({ className }: { className?: string }) {
   ] as const;
 
   return (
-    <div className={cn("inline-flex items-center rounded-lg border border-border bg-card p-1 shadow-sm", className)}>
+    <div className={cn("inline-flex items-center rounded-lg border border-border bg-card p-1", className)}>
       {themes.map(({ value, icon: Icon, label }) => (
         <button
           key={value}
@@ -34,7 +34,7 @@ export function ThemeToggle({ className }: { className?: string }) {
           className={cn(
             "relative flex items-center justify-center h-7 w-7 rounded-md transition-all duration-200",
             theme === value
-              ? "bg-primary text-primary-foreground shadow-sm"
+              ? "bg-primary text-primary-foreground"
               : "text-muted-foreground hover:text-foreground hover:bg-accent"
           )}
           title={label}

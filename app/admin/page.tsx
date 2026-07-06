@@ -169,7 +169,7 @@ export default function AdminDashboard() {
               </div>
 
               {/* Security Log Terminal */}
-              <Card className="border-border bg-card text-card-foreground shadow-sm">
+              <Card className="border-border bg-card text-card-foreground">
                 <CardHeader className="px-3 pt-3 pb-2">
                   <div className="flex items-center gap-1.5">
                     <Terminal className="size-3.5 text-amber-500" />
@@ -177,7 +177,7 @@ export default function AdminDashboard() {
                   </div>
                   <CardDescription className="text-muted-foreground text-[10px]">Realtime proxy interception trace</CardDescription>
                 </CardHeader>
-                <CardContent className="bg-muted rounded-lg border border-border p-2.5 font-mono text-[10px] text-muted-foreground space-y-1 shadow-inner overflow-x-auto mx-3 mb-3">
+                <CardContent className="bg-muted rounded-lg border border-border p-2.5 font-mono text-[10px] text-muted-foreground space-y-1 overflow-x-auto mx-3 mb-3">
                   <p className="text-muted-foreground/60 whitespace-nowrap">[2026-07-06T10:55:00] PROXY: Intercepted route request to /admin</p>
                   <p className="text-emerald-500 whitespace-nowrap">[2026-07-06T10:55:00] PROXY: Session cookie identified</p>
                   <p className="text-emerald-500 whitespace-nowrap">[2026-07-06T10:55:01] PROXY: API response verified user role = admin</p>

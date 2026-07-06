@@ -46,7 +46,7 @@ export default function AdminSettingsPage() {
               {/* Settings Cards */}
               <div className="grid gap-3 grid-cols-1 lg:grid-cols-2">
                 {/* Authentication */}
-                <Card className="border-border bg-card text-card-foreground shadow-sm">
+                <Card className="border-border bg-card text-card-foreground">
                   <CardHeader className="px-4 pt-4 pb-2">
                     <div className="flex items-center gap-2">
                       <div className="flex size-8 items-center justify-center rounded-lg bg-amber-500/10 border border-amber-500/20">
@@ -75,7 +75,7 @@ export default function AdminSettingsPage() {
                 </Card>
 
                 {/* Database */}
-                <Card className="border-border bg-card text-card-foreground shadow-sm">
+                <Card className="border-border bg-card text-card-foreground">
                   <CardHeader className="px-4 pt-4 pb-2">
                     <div className="flex items-center gap-2">
                       <div className="flex size-8 items-center justify-center rounded-lg bg-blue-500/10 border border-blue-500/20">
@@ -104,7 +104,7 @@ export default function AdminSettingsPage() {
                 </Card>
 
                 {/* Performance */}
-                <Card className="border-border bg-card text-card-foreground shadow-sm">
+                <Card className="border-border bg-card text-card-foreground">
                   <CardHeader className="px-4 pt-4 pb-2">
                     <div className="flex items-center gap-2">
                       <div className="flex size-8 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/20">
@@ -133,7 +133,7 @@ export default function AdminSettingsPage() {
                 </Card>
 
                 {/* Security */}
-                <Card className="border-border bg-card text-card-foreground shadow-sm">
+                <Card className="border-border bg-card text-card-foreground">
                   <CardHeader className="px-4 pt-4 pb-2">
                     <div className="flex items-center gap-2">
                       <div className="flex size-8 items-center justify-center rounded-lg bg-red-500/10 border border-red-500/20">
