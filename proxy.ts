@@ -8,6 +8,30 @@ export async function proxy(request: NextRequest) {
   const isDashboardRoute = pathname.startsWith("/dashboard");
   const isAdminRoute = pathname.startsWith("/admin");
   const isLoginRoute = pathname === "/login";
+  const isRootRoute = pathname === "/";
+
+  // Root route: redirect based on auth status
+  if (isRootRoute) {
+    if (!sessionToken) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+    try {
+      const sessionResponse = await fetch(
+        new URL("/api/auth/get-session", request.url).toString(),
+        { headers: { cookie: request.headers.get("cookie") || "" } }
+      );
+      if (sessionResponse.ok) {
+        const session = await sessionResponse.json();
+        if (session?.user) {
+          const redirectUrl = session.user.role === "admin" ? "/admin" : "/dashboard";
+          return NextResponse.redirect(new URL(redirectUrl, request.url));
+        }
+      }
+    } catch {
+      // Fall through to login
+    }
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
 
   // Fast path: no session token and trying to access protected routes
   if (!sessionToken && (isDashboardRoute || isAdminRoute)) {
@@ -64,6 +88,6 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/admin/:path*", "/login"],
+  matcher: ["/", "/dashboard/:path*", "/admin/:path*", "/login"],
 };
 export default proxy;

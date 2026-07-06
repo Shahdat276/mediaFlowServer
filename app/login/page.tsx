@@ -31,16 +31,16 @@ export default function LoginPage() {
       const { data, error } = await authClient.signIn.email({
         email,
         password,
-        callbackURL: "/dashboard" // Will be intercepted by proxy.ts to check if admin/user
       });
 
       if (error) {
         toast.error(error.message || "Failed to sign in");
       } else {
         toast.success("Welcome back!");
-        // Refresh & redirect
         router.refresh();
-        router.push("/dashboard");
+        // Role-based redirect
+        const redirectUrl = data?.user?.role === "admin" ? "/admin" : "/dashboard";
+        router.push(redirectUrl);
       }
     } catch (err: any) {
       toast.error(err.message || "An unexpected error occurred");
@@ -62,7 +62,6 @@ export default function LoginPage() {
         email,
         password,
         name,
-        callbackURL: "/dashboard"
       });
 
       if (error) {
