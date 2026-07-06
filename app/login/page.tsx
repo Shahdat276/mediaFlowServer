@@ -99,22 +99,22 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4 font-sans selection:bg-violet-500/20">
+    <div className="flex min-h-screen items-center justify-center bg-background p-4 sm:p-6 font-sans selection:bg-violet-500/20">
       {/* Theme toggle */}
-      <div className="absolute top-4 right-4 z-50">
+      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-50">
         <ThemeToggle />
       </div>
 
-      <div className="w-full max-w-md space-y-6">
+      <div className="w-full max-w-md space-y-4 sm:space-y-6">
         {/* Hero text */}
         <div className="flex flex-col items-center text-center space-y-2">
-          <div className="flex items-center gap-2 rounded-full bg-primary/10 border border-primary/20 px-3 py-1 text-sm text-primary font-semibold tracking-wide">
-            <ShieldCheck className="size-4" /> MediaFlow Secure Auth
+          <div className="flex items-center gap-1.5 sm:gap-2 rounded-full bg-primary/10 border border-primary/20 px-2.5 sm:px-3 py-1 text-xs sm:text-sm text-primary font-semibold tracking-wide">
+            <ShieldCheck className="size-3.5 sm:size-4" /> MediaFlow Secure Auth
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
             Welcome Back
           </h1>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-muted-foreground text-xs sm:text-sm">
             Sign in to your dashboard to manage your flows
           </p>
         </div>

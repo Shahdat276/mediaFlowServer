@@ -10,16 +10,34 @@ import {
   Shield,
   LogOut,
   Zap,
+  X,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from "lucide-react";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useMobileSidebar } from "@/components/mobile-sidebar-provider";
 
 export function AppSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { data: session } = authClient.useSession();
   const [loading, setLoading] = useState(false);
+  const { isOpen, close } = useMobileSidebar();
+  const [collapsed, setCollapsed] = useState(false);
+
+  // Persist collapsed state in localStorage
+  useEffect(() => {
+    const stored = localStorage.getItem("sidebar-collapsed");
+    if (stored === "true") setCollapsed(true);
+  }, []);
+
+  const toggleCollapsed = () => {
+    const next = !collapsed;
+    setCollapsed(next);
+    localStorage.setItem("sidebar-collapsed", String(next));
+  };
 
   const handleSignOut = async () => {
     setLoading(true);
@@ -39,72 +57,160 @@ export function AppSidebar() {
     ? session.user.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
     : "U";
 
-  return (
-    <aside className="hidden md:flex w-64 flex-col border-r border-border bg-sidebar">
-      {/* Brand */}
-      <div className="flex items-center gap-2 px-6 h-14 border-b border-border">
-        <div className="flex size-7 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+  const navItems = [
+    { href: "/dashboard", label: "Dashboard", icon: Layers, active: pathname === "/dashboard" },
+    ...(session?.user?.role === "admin"
+      ? [{ href: "/admin", label: "Admin Portal", icon: Shield, active: pathname === "/admin" }]
+      : []),
+  ];
+
+  // Shared nav content for both desktop and mobile
+  const navContent = (
+    <>
+      {/* Brand + Toggle */}
+      <div className={cn(
+        "flex items-center h-14 border-b border-border shrink-0",
+        collapsed ? "justify-center px-2" : "gap-2 px-4 sm:px-6"
+      )}>
+        <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
           <Zap className="size-4" />
         </div>
-        <span className="font-bold text-lg tracking-tight text-foreground">MediaFlow</span>
+        {!collapsed && (
+          <span className="font-bold text-lg tracking-tight text-foreground truncate flex-1">MediaFlow</span>
+        )}
+        {/* Collapse toggle - desktop only */}
+        <button
+          onClick={toggleCollapsed}
+          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          className="hidden md:flex items-center justify-center size-7 shrink-0 rounded-md hover:bg-accent transition-colors text-muted-foreground hover:text-foreground"
+        >
+          {collapsed ? (
+            <PanelLeftOpen className="size-4" />
+          ) : (
+            <PanelLeftClose className="size-4" />
+          )}
+        </button>
       </div>
 
       {/* User info */}
-      <div className="flex items-center gap-3 px-6 py-4 border-b border-border">
-        <Avatar className="size-9 border border-border">
+      <div className={cn(
+        "flex items-center border-b border-border shrink-0",
+        collapsed ? "justify-center px-2 py-4" : "gap-3 px-4 sm:px-6 py-4"
+      )}>
+        <Avatar className="size-9 border border-border shrink-0">
           <AvatarFallback className="bg-primary/10 text-primary text-sm font-semibold">
             {userInitials}
           </AvatarFallback>
         </Avatar>
-        <div className="flex flex-col min-w-0">
-          <span className="text-sm font-medium text-foreground truncate">
-            {session?.user?.name || "User"}
-          </span>
-          <span className="text-xs text-muted-foreground truncate">
-            {session?.user?.email || ""}
-          </span>
-        </div>
+        {!collapsed && (
+          <div className="flex flex-col min-w-0">
+            <span className="text-sm font-medium text-foreground truncate">
+              {session?.user?.name || "User"}
+            </span>
+            <span className="text-xs text-muted-foreground truncate">
+              {session?.user?.email || ""}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-3 py-4 space-y-1">
-        <Link
-          href="/dashboard"
-          className={cn(
-            "flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all",
-            pathname === "/dashboard"
-              ? "bg-primary/10 text-primary border border-primary/20"
-              : "text-muted-foreground hover:text-foreground hover:bg-accent"
-          )}
-        >
-          <Layers className="size-4" /> Dashboard
-        </Link>
-        {session?.user?.role === "admin" && (
-          <Link
-            href="/admin"
-            className={cn(
-              "flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all",
-              pathname === "/admin"
-                ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
-                : "text-muted-foreground hover:text-foreground hover:bg-accent"
-            )}
-          >
-            <Shield className="size-4" /> Admin Portal
-          </Link>
-        )}
+      <nav className={cn(
+        "flex-1 py-4 space-y-1 overflow-y-auto",
+        collapsed ? "px-2" : "px-3"
+      )}>
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          const link = (
+            <Link
+              href={item.href}
+              onClick={close}
+              className={cn(
+                "flex items-center font-medium rounded-lg transition-all",
+                collapsed
+                  ? "justify-center px-2 py-2.5 text-sm"
+                  : "gap-3 px-3 py-2.5 text-sm",
+                item.active
+                  ? item.href === "/admin"
+                    ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
+                    : "bg-primary/10 text-primary border border-primary/20"
+                  : "text-muted-foreground hover:text-foreground hover:bg-accent"
+              )}
+            >
+              <Icon className="size-4 shrink-0" />
+              {!collapsed && <span className="truncate">{item.label}</span>}
+            </Link>
+          );
+
+          // Add title attribute for tooltip when collapsed
+          if (collapsed) {
+            return (
+              <div key={item.href} title={item.label}>
+                {link}
+              </div>
+            );
+          }
+
+          return link;
+        })}
       </nav>
 
       {/* Logout */}
-      <div className="p-3 border-t border-border">
+      <div className={cn(
+        "border-t border-border shrink-0",
+        collapsed ? "p-2" : "p-3"
+      )}>
         <Button
           variant="ghost"
-          onClick={handleSignOut}
+          onClick={() => { close(); handleSignOut(); }}
           disabled={loading}
-          className="w-full justify-start text-muted-foreground hover:text-red-500 hover:bg-red-500/10 gap-3 font-medium"
+          className={cn(
+            "text-muted-foreground hover:text-red-500 hover:bg-red-500/10 font-medium",
+            collapsed ? "w-full justify-center px-2" : "w-full justify-start gap-3"
+          )}
         >
-          <LogOut className="size-4" /> Log Out
+          <LogOut className="size-4 shrink-0" />
+          {!collapsed && <span>Log Out</span>}
         </Button>
       </div>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* Desktop sidebar */}
+      <aside
+        className={cn(
+          "hidden md:flex shrink-0 flex-col border-r border-border bg-sidebar transition-all duration-200",
+          collapsed ? "w-16" : "w-64"
+        )}
+      >
+        {navContent}
+      </aside>
+
+      {/* Mobile drawer overlay */}
+      {isOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={close}
+          />
+          {/* Drawer panel */}
+          <aside className="relative flex w-72 max-w-[85vw] h-full flex-col bg-sidebar border-r border-border shadow-xl animate-in slide-in-from-left duration-200">
+            {/* Close button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={close}
+              className="absolute top-3 right-3 text-muted-foreground hover:text-foreground z-10"
+            >
+              <X className="size-4" />
+            </Button>
+            {navContent}
+          </aside>
+        </div>
+      )}
+    </>
   );
 }
