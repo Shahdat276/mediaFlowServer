@@ -4,11 +4,11 @@ export function AppFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-border/60 bg-background">
-      <div className="mx-auto flex max-w-7xl flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 px-4 sm:px-6 py-4">
-        <p className="flex items-center gap-1 text-xs text-muted-foreground text-center sm:text-left">
+    <footer className="mt-auto border-t border-border/60 bg-background shrink-0">
+      <div className="mx-auto flex flex-col sm:flex-row items-center justify-between gap-1.5 px-3 sm:px-4 py-2">
+        <p className="flex items-center gap-1 text-[10px] text-muted-foreground text-center sm:text-left">
           &copy; {currentYear} MediaFlow. Built with{" "}
-          <Heart className="size-3 text-red-500 fill-red-500 shrink-0" /> by{" "}
+          <Heart className="size-2.5 text-red-500 fill-red-500 shrink-0" /> by{" "}
           <a
             href="https://shahdat.vercel.app"
             target="_blank"
@@ -18,16 +18,16 @@ export function AppFooter() {
             Shahdat Hossain
           </a>
         </p>
-        <nav className="flex items-center gap-3 sm:gap-4">
-          <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+        <nav className="flex items-center gap-2 sm:gap-3">
+          <a href="#" className="text-[10px] text-muted-foreground hover:text-foreground transition-colors">
             Privacy
           </a>
-          <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+          <a href="#" className="text-[10px] text-muted-foreground hover:text-foreground transition-colors">
             Terms
           </a>
           <a
             href="mailto:shahdat.asg@gmail.com"
-            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+            className="text-[10px] text-muted-foreground hover:text-foreground transition-colors"
           >
             Contact
           </a>
@@ -35,9 +35,9 @@ export function AppFooter() {
             href="https://shahdat.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
+            className="flex items-center gap-0.5 text-[10px] text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Globe className="size-3" /> Website
+            <Globe className="size-2.5" /> Website
           </a>
         </nav>
       </div>

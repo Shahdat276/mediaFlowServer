@@ -38,45 +38,39 @@ export function AppHeader() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
-      <div className="flex h-14 items-center justify-between px-4 sm:px-6">
+      <div className="flex h-11 items-center justify-between px-3 sm:px-4">
         {/* Left: Hamburger + page title */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           {/* Hamburger - mobile only */}
           <Button
             variant="ghost"
             size="icon"
             onClick={toggle}
-            className="text-muted-foreground hover:text-foreground md:hidden"
+            className="text-muted-foreground hover:text-foreground md:hidden size-8"
           >
-            <Menu className="size-5" />
+            <Menu className="size-4" />
           </Button>
 
-          {/* Desktop page title */}
-          <div className="hidden md:flex items-center gap-2">
-            <span className="text-sm font-medium text-foreground">
-              {pathname === "/dashboard" ? "Dashboard" : pathname === "/admin" ? "Admin Portal" : "MediaFlow"}
-            </span>
-          </div>
-          {/* Mobile page title */}
-          <span className="text-sm font-semibold text-foreground md:hidden">
+          {/* Page title */}
+          <span className="text-sm font-medium text-foreground">
             {pathname === "/dashboard" ? "Dashboard" : pathname === "/admin" ? "Admin Portal" : "MediaFlow"}
           </span>
         </div>
 
         {/* Right: User info + Theme + Logout */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {/* User avatar + name - desktop only */}
-          <div className="hidden sm:flex items-center gap-2">
-            <Avatar className="size-7 border border-border">
-              <AvatarFallback className="bg-primary/10 text-primary text-xs font-semibold">
+          <div className="hidden sm:flex items-center gap-1.5">
+            <Avatar className="size-6 border border-border">
+              <AvatarFallback className="bg-primary/10 text-primary text-[10px] font-semibold">
                 {userInitials}
               </AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
-              <span className="text-xs font-medium text-foreground leading-none">
+              <span className="text-[11px] font-medium text-foreground leading-none">
                 {session?.user?.name || "User"}
               </span>
-              <span className="text-[10px] text-muted-foreground">
+              <span className="text-[9px] text-muted-foreground">
                 {session?.user?.role || "user"}
               </span>
             </div>

@@ -32,22 +32,22 @@ export default function UserDashboard() {
 
   return (
     <MobileSidebarProvider>
-      <div className="flex min-h-screen bg-background">
+      <div className="flex h-screen overflow-hidden bg-background">
         {/* Sidebar - desktop */}
         <AppSidebar />
 
         {/* Main area */}
-        <div className="flex flex-1 flex-col min-h-screen">
-          {/* Header */}
+        <div className="flex flex-1 flex-col min-w-0">
+          {/* Header - fixed */}
           <AppHeader />
 
-          <main className="flex-1 p-4 sm:p-6 md:p-10 overflow-y-auto">
-            <div className="mx-auto max-w-7xl">
+          <main className="flex-1 overflow-y-auto">
+            <div className="p-3 sm:p-4 md:p-6">
               {/* Page Title */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 pb-4 sm:pb-6 border-b border-border mb-6 sm:mb-8">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 border-b border-border mb-4">
                 <div className="min-w-0 flex-1">
-                  <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">Dashboard</h1>
-                  <p className="text-muted-foreground text-xs sm:text-sm mt-1 truncate">
+                  <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">Dashboard</h1>
+                  <p className="text-muted-foreground text-[11px] truncate">
                     Welcome back, {session?.user?.name || "User"}
                   </p>
                 </div>
@@ -56,97 +56,107 @@ export default function UserDashboard() {
                     href="/admin"
                     className={buttonVariants({
                       variant: "default",
-                      className: "bg-amber-600 hover:bg-amber-500 text-primary-foreground font-medium gap-1.5 py-2 px-3 rounded-lg text-sm"
+                      size: "sm",
+                      className: "bg-amber-600 hover:bg-amber-500 text-primary-foreground font-medium gap-1 py-1.5 px-2.5 rounded-lg text-xs h-7"
                     })}
                   >
-                    <Shield className="size-4" /> Admin Console
+                    <Shield className="size-3.5" /> Admin Console
                   </a>
                 )}
               </div>
 
               {/* Stats Grid */}
-              <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mb-6 sm:mb-8">
-                <Card className="border-border bg-card text-card-foreground shadow-sm">
-                  <CardHeader className="flex flex-row items-center justify-between pb-2">
-                    <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Account Role</span>
-                    <User className="size-4 text-primary" />
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-xl sm:text-2xl font-bold capitalize text-foreground">{session?.user?.role || "user"}</div>
-                    <p className="text-muted-foreground text-xs mt-1">Standard application privilege</p>
-                  </CardContent>
+              <div className="grid gap-2 grid-cols-1 sm:grid-cols-3 mb-3">
+                <Card className="border-border bg-card text-card-foreground">
+                  <div className="flex items-center justify-between px-2.5 py-2">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-primary/10 border border-primary/20">
+                        <User className="size-3 text-primary" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Account Role</p>
+                        <p className="text-sm font-bold capitalize text-foreground leading-tight">{session?.user?.role || "user"}</p>
+                      </div>
+                    </div>
+                  </div>
                 </Card>
-                <Card className="border-border bg-card text-card-foreground shadow-sm">
-                  <CardHeader className="flex flex-row items-center justify-between pb-2">
-                    <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Active Tasks</span>
-                    <Activity className="size-4 text-primary" />
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-xl sm:text-2xl font-bold text-foreground">12</div>
-                    <p className="text-muted-foreground text-xs mt-1">+4 created in last 24h</p>
-                  </CardContent>
+                <Card className="border-border bg-card text-card-foreground">
+                  <div className="flex items-center justify-between px-2.5 py-2">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-primary/10 border border-primary/20">
+                        <Activity className="size-3 text-primary" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Active Tasks</p>
+                        <p className="text-sm font-bold text-foreground leading-tight">12</p>
+                      </div>
+                    </div>
+                  </div>
                 </Card>
-                <Card className="border-border bg-card text-card-foreground shadow-sm sm:col-span-2 md:col-span-1">
-                  <CardHeader className="flex flex-row items-center justify-between pb-2">
-                    <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">System Status</span>
-                    <Settings className="size-4 text-emerald-500 animate-pulse" />
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-xl sm:text-2xl font-bold text-emerald-500">Online</div>
-                    <p className="text-muted-foreground text-xs mt-1">All services operating normally</p>
-                  </CardContent>
+                <Card className="border-border bg-card text-card-foreground">
+                  <div className="flex items-center justify-between px-2.5 py-2">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                        <Settings className="size-3 text-emerald-500 animate-pulse" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">System Status</p>
+                        <p className="text-sm font-bold text-emerald-500 leading-tight">Online</p>
+                      </div>
+                    </div>
+                  </div>
                 </Card>
               </div>
 
               {/* Details & Admin Verification Card */}
-              <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2">
+              <div className="grid gap-3 grid-cols-1 md:grid-cols-2">
                 <Card className="border-border bg-card text-card-foreground shadow-sm">
-                  <CardHeader>
-                    <CardTitle className="text-base sm:text-lg font-bold text-foreground">Profile Details</CardTitle>
-                    <CardDescription className="text-muted-foreground text-xs">Better Auth Session payload</CardDescription>
+                  <CardHeader className="px-3 pt-3 pb-2">
+                    <CardTitle className="text-sm font-bold text-foreground">Profile Details</CardTitle>
+                    <CardDescription className="text-muted-foreground text-[10px]">Better Auth Session payload</CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-3.5 text-sm">
-                    <div className="flex flex-col sm:flex-row sm:justify-between gap-1 py-1 border-b border-border">
+                  <CardContent className="space-y-2.5 text-xs px-3 pb-3 pt-0">
+                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 py-0.5 border-b border-border">
                       <span className="text-muted-foreground">Name</span>
                       <span className="text-foreground font-medium">{session?.user?.name}</span>
                     </div>
-                    <div className="flex flex-col sm:flex-row sm:justify-between gap-1 py-1 border-b border-border">
+                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 py-0.5 border-b border-border">
                       <span className="text-muted-foreground">Email</span>
                       <span className="text-foreground font-medium break-all">{session?.user?.email}</span>
                     </div>
-                    <div className="flex flex-col sm:flex-row sm:justify-between gap-1 py-1 border-b border-border">
+                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 py-0.5 border-b border-border">
                       <span className="text-muted-foreground">User ID</span>
-                      <span className="text-muted-foreground font-mono text-xs break-all">{session?.user?.id}</span>
+                      <span className="text-muted-foreground font-mono text-[10px] break-all">{session?.user?.id}</span>
                     </div>
-                    <div className="flex flex-col sm:flex-row sm:justify-between gap-1 py-1">
+                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 py-0.5">
                       <span className="text-muted-foreground">Session Created</span>
-                      <span className="text-muted-foreground text-xs">{new Date(session?.session?.createdAt || "").toLocaleString()}</span>
+                      <span className="text-muted-foreground text-[10px]">{new Date(session?.session?.createdAt || "").toLocaleString()}</span>
                     </div>
                   </CardContent>
                 </Card>
 
                 <Card className="border-border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
-                  <CardHeader>
-                    <div className="flex items-center gap-2 rounded-full w-fit bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 text-xs text-amber-600 dark:text-amber-400 font-medium">
-                      <Shield className="size-3.5" /> Security Testing
+                  <CardHeader className="px-3 pt-3 pb-2">
+                    <div className="flex items-center gap-1.5 rounded-full w-fit bg-amber-500/10 border border-amber-500/20 px-1.5 py-0.5 text-[10px] text-amber-600 dark:text-amber-400 font-medium">
+                      <Shield className="size-3" /> Security Testing
                     </div>
-                    <CardTitle className="text-base sm:text-lg font-bold text-foreground mt-3">Admin Access Verification</CardTitle>
-                    <CardDescription className="text-muted-foreground text-xs">
+                    <CardTitle className="text-sm font-bold text-foreground mt-2">Admin Access Verification</CardTitle>
+                    <CardDescription className="text-muted-foreground text-[10px]">
                       Test your role restrictions by attempting to navigate to the restricted administrative page.
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="text-muted-foreground text-sm">
+                  <CardContent className="text-muted-foreground text-xs px-3 pb-2 pt-0">
                     Standard users will be automatically blocked by the routing proxy middleware and redirected to a forbidden page, while accounts with the `admin` role are permitted access.
                   </CardContent>
-                  <div className="p-6 pt-0">
+                  <div className="px-3 pb-3 pt-0">
                     <a
                       href="/admin"
                       className={buttonVariants({
                         variant: "default",
-                        className: "w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium gap-1.5 group py-2.5 rounded-lg flex items-center justify-center"
+                        className: "w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium gap-1.5 group py-2 rounded-lg flex items-center justify-center text-xs"
                       })}
                     >
-                      Try Accessing Admin Page <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+                      Try Accessing Admin Page <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
                     </a>
                   </div>
                 </Card>
