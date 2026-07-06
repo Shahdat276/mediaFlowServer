@@ -1,15 +1,10 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { MongoClient } from "mongodb";
+import { getDb } from "@/lib/mongodb";
 
 export async function GET() {
   try {
-    if (!process.env.MONGODB_URI) {
-      throw new Error("MONGODB_URI is not defined");
-    }
-    const client = new MongoClient(process.env.MONGODB_URI);
-    await client.connect();
-    const db = client.db();
+    const db = getDb();
 
     // 1. Create standard user if not exists
     const standardUser = await db.collection("user").findOne({ email: "user@mediaflow.com" });
@@ -21,7 +16,6 @@ export async function GET() {
           name: "Standard User",
         },
       });
-      // Set role: user
       await db.collection("user").updateOne(
         { email: "user@mediaflow.com" },
         { $set: { role: "user" } }
@@ -38,14 +32,11 @@ export async function GET() {
           name: "System Admin",
         },
       });
-      // Set role: admin
       await db.collection("user").updateOne(
         { email: "admin@mediaflow.com" },
         { $set: { role: "admin" } }
       );
     }
-
-    await client.close();
 
     return NextResponse.json({
       success: true,

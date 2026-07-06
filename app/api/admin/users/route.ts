@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { MongoClient } from "mongodb";
+import { getDb } from "@/lib/mongodb";
+import { hashPassword } from "better-auth/crypto";
 
 export async function GET() {
   try {
@@ -16,13 +17,7 @@ export async function GET() {
       );
     }
 
-    if (!process.env.MONGODB_URI) {
-      throw new Error("MONGODB_URI is not defined");
-    }
-    const client = new MongoClient(process.env.MONGODB_URI);
-    await client.connect();
-    const db = client.db();
-
+    const db = getDb();
     const usersRaw = await db.collection("user").find({}).toArray();
 
     const users = usersRaw.map((u) => ({
@@ -32,8 +27,6 @@ export async function GET() {
       role: u.role || "user",
       createdAt: u.createdAt ? new Date(u.createdAt).toISOString() : "",
     }));
-
-    await client.close();
 
     return NextResponse.json({ success: true, users });
   } catch (error: any) {
@@ -67,26 +60,17 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!process.env.MONGODB_URI) {
-      throw new Error("MONGODB_URI is not defined");
-    }
-
-    const client = new MongoClient(process.env.MONGODB_URI);
-    await client.connect();
-    const db = client.db();
+    const db = getDb();
 
     // Check if user already exists
     const existing = await db.collection("user").findOne({ email });
     if (existing) {
-      await client.close();
       return NextResponse.json(
         { success: false, message: "User with this email already exists" },
         { status: 409 }
       );
     }
 
-    // Hash password using Better Auth's internal method
-    const { hashPassword } = await import("better-auth/crypto");
     const hashedPassword = await hashPassword(password);
 
     const now = new Date().toISOString();
@@ -99,8 +83,6 @@ export async function POST(request: Request) {
       updatedAt: now,
       emailVerified: true,
     });
-
-    await client.close();
 
     return NextResponse.json({
       success: true,
