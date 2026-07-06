@@ -9,8 +9,9 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "recharts", "@base-ui/react"],
   },
 
-  // Add security and caching headers
+  // Add security and caching headers (production only for static assets)
   async headers() {
+    const isProd = process.env.NODE_ENV === "production";
     return [
       {
         source: "/api/:path*",
@@ -20,12 +21,16 @@ const nextConfig: NextConfig = {
           { key: "X-Frame-Options", value: "DENY" },
         ],
       },
-      {
-        source: "/_next/static/:path*",
-        headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
-        ],
-      },
+      ...(isProd
+        ? [
+            {
+              source: "/_next/static/:path*",
+              headers: [
+                { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+              ],
+            },
+          ]
+        : []),
     ];
   },
 };

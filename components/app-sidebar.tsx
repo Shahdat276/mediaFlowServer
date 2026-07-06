@@ -13,6 +13,9 @@ import {
   X,
   PanelLeftClose,
   PanelLeftOpen,
+  Users,
+  CreditCard,
+  Settings,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useState, useEffect } from "react";
@@ -60,7 +63,12 @@ export function AppSidebar() {
   const navItems = [
     { href: "/dashboard", label: "Dashboard", icon: Layers, active: pathname === "/dashboard" },
     ...(session?.user?.role === "admin"
-      ? [{ href: "/admin", label: "Admin Portal", icon: Shield, active: pathname === "/admin" }]
+      ? [
+          { href: "/admin", label: "Overview", icon: Shield, active: pathname === "/admin" },
+          { href: "/admin/users", label: "Users", icon: Users, active: pathname === "/admin/users" },
+          { href: "/admin/plans", label: "Plans", icon: CreditCard, active: pathname === "/admin/plans" },
+          { href: "/admin/settings", label: "Settings", icon: Settings, active: pathname === "/admin/settings" },
+        ]
       : []),
   ];
 
