@@ -27,7 +27,19 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, message: "This Transaction ID has already been submitted." }, { status: 409 });
     }
 
-    const amount = billing === "yearly" ? 4990 : 499;
+    // Look up plan pricing from DB
+    const planDoc = await db.collection("plans").findOne({
+      name: { $regex: `^${plan}$`, $options: "i" },
+      active: true,
+    });
+
+    let amount: number;
+    if (planDoc) {
+      amount = billing === "yearly" ? planDoc.price * 10 : planDoc.price;
+    } else {
+      // Fallback to hardcoded prices if plan not in DB
+      amount = billing === "yearly" ? 4990 : 499;
+    }
     const now = new Date().toISOString();
 
     // 1. Insert transaction verification request
