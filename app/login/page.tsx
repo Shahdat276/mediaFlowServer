@@ -251,25 +251,7 @@ function LoginForm() {
           </Tabs>
         </Card>
 
-        {/* Developer Seeding Utility Card */}
-        <Card className="bg-muted/50 text-muted-foreground p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="space-y-1 text-center sm:text-left">
-            <div className="flex items-center justify-center sm:justify-start gap-1.5 text-xs text-amber-500 font-semibold tracking-wide">
-              <Database className="size-3.5" /> Seeding Assistant
-            </div>
-            <p className="text-muted-foreground text-xs">
-              Automatically populate MongoDB with default Admin & User accounts.
-            </p>
-          </div>
-          <Button
-            variant="outline"
-            onClick={triggerSeed}
-            disabled={loading}
-            className="bg-card hover:bg-accent text-foreground text-xs"
-          >
-            {loading ? <Loader2 className="size-3 animate-spin mr-1" /> : "Seed Test DB"}
-          </Button>
-        </Card>
+        
       </div>
     </div>
   );
