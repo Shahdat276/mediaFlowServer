@@ -289,6 +289,7 @@ function CheckoutContent() {
             onClick={() => router.push("/dashboard")}
             className="w-full bg-blue-600 hover:bg-blue-500 font-bold py-2 rounded-lg text-xs"
           >
+            Go to Dashboard
           </Button>
         </div>
       )}
