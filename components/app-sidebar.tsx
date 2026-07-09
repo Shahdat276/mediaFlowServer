@@ -64,6 +64,7 @@ export function AppSidebar() {
   const navItems = [
     { href: "/dashboard", label: "Dashboard", icon: Layers, active: pathname === "/dashboard" },
     { href: "/profile", label: "Profile", icon: User, active: pathname === "/profile" },
+    { href: "/billing", label: "Billing", icon: CreditCard, active: pathname === "/billing" },
     ...(session?.user?.role === "admin"
       ? [
           { href: "/admin", label: "Overview", icon: Shield, active: pathname === "/admin" },

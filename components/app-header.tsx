@@ -53,7 +53,7 @@ export function AppHeader() {
 
           {/* Page title */}
           <span className="text-sm font-medium text-foreground">
-            {pathname === "/dashboard" ? "Dashboard" : pathname === "/admin" ? "Admin Portal" : pathname === "/profile" ? "My Profile" : "MediaFlow"}
+            {pathname === "/dashboard" ? "Dashboard" : pathname === "/admin" ? "Admin Portal" : pathname === "/profile" ? "My Profile" : pathname === "/billing" ? "Billing History" : "MediaFlow"}
           </span>
         </div>
 
