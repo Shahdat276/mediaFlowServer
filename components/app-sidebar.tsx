@@ -13,6 +13,7 @@ import {
   X,
   PanelLeftClose,
   PanelLeftOpen,
+  User,
   Users,
   CreditCard,
   Settings,
@@ -62,6 +63,7 @@ export function AppSidebar() {
 
   const navItems = [
     { href: "/dashboard", label: "Dashboard", icon: Layers, active: pathname === "/dashboard" },
+    { href: "/profile", label: "Profile", icon: User, active: pathname === "/profile" },
     ...(session?.user?.role === "admin"
       ? [
           { href: "/admin", label: "Overview", icon: Shield, active: pathname === "/admin" },

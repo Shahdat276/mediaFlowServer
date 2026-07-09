@@ -53,14 +53,17 @@ export function AppHeader() {
 
           {/* Page title */}
           <span className="text-sm font-medium text-foreground">
-            {pathname === "/dashboard" ? "Dashboard" : pathname === "/admin" ? "Admin Portal" : "MediaFlow"}
+            {pathname === "/dashboard" ? "Dashboard" : pathname === "/admin" ? "Admin Portal" : pathname === "/profile" ? "My Profile" : "MediaFlow"}
           </span>
         </div>
 
         {/* Right: User info + Theme + Logout */}
         <div className="flex items-center gap-1.5 sm:gap-2">
           {/* User avatar + name - desktop only */}
-          <div className="hidden sm:flex items-center gap-1.5">
+          <button
+            onClick={() => router.push("/profile")}
+            className="hidden sm:flex items-center gap-1.5 hover:opacity-80 transition-opacity cursor-pointer"
+          >
             <Avatar className="size-6">
               <AvatarFallback className="bg-primary/10 text-primary text-[10px] font-semibold">
                 {userInitials}
@@ -74,7 +77,7 @@ export function AppHeader() {
                 {session?.user?.role || "user"}
               </span>
             </div>
-          </div>
+          </button>
 
           <ThemeToggle />
 
