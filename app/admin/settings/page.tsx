@@ -16,7 +16,7 @@ export default function AdminSettingsPage() {
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-2">
           <Shield className="size-8 animate-pulse text-amber-500" />
-          <span className="text-sm text-muted-foreground">Loading...</span>
+          <span className="text-lg text-muted-foreground">Loading...</span>
         </div>
       </div>
     );
@@ -37,7 +37,7 @@ export default function AdminSettingsPage() {
                     <Settings className="size-5 text-amber-500" />
                     <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">System Settings</h1>
                   </div>
-                  <p className="text-muted-foreground text-[11px]">
+                  <p className="text-muted-foreground text-base">
                     Application configuration and system information
                   </p>
                 </div>
@@ -53,23 +53,23 @@ export default function AdminSettingsPage() {
                         <Shield className="size-4 text-amber-500" />
                       </div>
                       <div>
-                        <CardTitle className="text-sm font-bold text-foreground">Authentication</CardTitle>
-                        <CardDescription className="text-muted-foreground text-[10px]">Auth engine configuration</CardDescription>
+                        <CardTitle className="text-lg font-bold text-foreground">Authentication</CardTitle>
+                        <CardDescription className="text-muted-foreground text-base">Auth engine configuration</CardDescription>
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent className="px-4 pb-4 pt-2 space-y-2">
                     <div className="flex justify-between items-center py-1.5">
-                      <span className="text-xs text-muted-foreground">Engine</span>
-                      <span className="text-xs font-medium text-foreground">Better Auth v1.6.23</span>
+                      <span className="text-base text-muted-foreground">Engine</span>
+                      <span className="text-base font-medium text-foreground">Better Auth v1.6.23</span>
                     </div>
                     <div className="flex justify-between items-center py-1.5">
-                      <span className="text-xs text-muted-foreground">Plugin</span>
-                      <span className="text-xs font-medium text-foreground">Admin Plugin</span>
+                      <span className="text-base text-muted-foreground">Plugin</span>
+                      <span className="text-base font-medium text-foreground">Admin Plugin</span>
                     </div>
                     <div className="flex justify-between items-center py-1.5">
-                      <span className="text-xs text-muted-foreground">Database</span>
-                      <span className="text-xs font-medium text-foreground">MongoDB Atlas</span>
+                      <span className="text-base text-muted-foreground">Database</span>
+                      <span className="text-base font-medium text-foreground">MongoDB Atlas</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -82,23 +82,23 @@ export default function AdminSettingsPage() {
                         <Database className="size-4 text-blue-500" />
                       </div>
                       <div>
-                        <CardTitle className="text-sm font-bold text-foreground">Database</CardTitle>
-                        <CardDescription className="text-muted-foreground text-[10px]">MongoDB connection settings</CardDescription>
+                        <CardTitle className="text-lg font-bold text-foreground">Database</CardTitle>
+                        <CardDescription className="text-muted-foreground text-base">MongoDB connection settings</CardDescription>
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent className="px-4 pb-4 pt-2 space-y-2">
                     <div className="flex justify-between items-center py-1.5">
-                      <span className="text-xs text-muted-foreground">Driver</span>
-                      <span className="text-xs font-medium text-foreground">mongodb (native)</span>
+                      <span className="text-base text-muted-foreground">Driver</span>
+                      <span className="text-base font-medium text-foreground">mongodb (native)</span>
                     </div>
                     <div className="flex justify-between items-center py-1.5">
-                      <span className="text-xs text-muted-foreground">Max Pool Size</span>
-                      <span className="text-xs font-medium text-foreground">10</span>
+                      <span className="text-base text-muted-foreground">Max Pool Size</span>
+                      <span className="text-base font-medium text-foreground">10</span>
                     </div>
                     <div className="flex justify-between items-center py-1.5">
-                      <span className="text-xs text-muted-foreground">Min Pool Size</span>
-                      <span className="text-xs font-medium text-foreground">2</span>
+                      <span className="text-base text-muted-foreground">Min Pool Size</span>
+                      <span className="text-base font-medium text-foreground">2</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -111,23 +111,23 @@ export default function AdminSettingsPage() {
                         <Gauge className="size-4 text-emerald-500" />
                       </div>
                       <div>
-                        <CardTitle className="text-sm font-bold text-foreground">Performance</CardTitle>
-                        <CardDescription className="text-muted-foreground text-[10px]">Optimization settings</CardDescription>
+                        <CardTitle className="text-lg font-bold text-foreground">Performance</CardTitle>
+                        <CardDescription className="text-muted-foreground text-base">Optimization settings</CardDescription>
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent className="px-4 pb-4 pt-2 space-y-2">
                     <div className="flex justify-between items-center py-1.5">
-                      <span className="text-xs text-muted-foreground">Compression</span>
-                      <span className="text-xs font-medium text-emerald-500">Enabled</span>
+                      <span className="text-base text-muted-foreground">Compression</span>
+                      <span className="text-base font-medium text-emerald-500">Enabled</span>
                     </div>
                     <div className="flex justify-between items-center py-1.5">
-                      <span className="text-xs text-muted-foreground">Package Optimization</span>
-                      <span className="text-xs font-medium text-foreground">lucide-react, recharts</span>
+                      <span className="text-base text-muted-foreground">Package Optimization</span>
+                      <span className="text-base font-medium text-foreground">lucide-react, recharts</span>
                     </div>
                     <div className="flex justify-between items-center py-1.5">
-                      <span className="text-xs text-muted-foreground">Static Cache</span>
-                      <span className="text-xs font-medium text-foreground">1 year (immutable)</span>
+                      <span className="text-base text-muted-foreground">Static Cache</span>
+                      <span className="text-base font-medium text-foreground">1 year (immutable)</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -140,23 +140,23 @@ export default function AdminSettingsPage() {
                         <Lock className="size-4 text-red-500" />
                       </div>
                       <div>
-                        <CardTitle className="text-sm font-bold text-foreground">Security</CardTitle>
-                        <CardDescription className="text-muted-foreground text-[10px]">Headers and access control</CardDescription>
+                        <CardTitle className="text-lg font-bold text-foreground">Security</CardTitle>
+                        <CardDescription className="text-muted-foreground text-base">Headers and access control</CardDescription>
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent className="px-4 pb-4 pt-2 space-y-2">
                     <div className="flex justify-between items-center py-1.5">
-                      <span className="text-xs text-muted-foreground">X-Content-Type-Options</span>
-                      <span className="text-xs font-medium text-foreground">nosniff</span>
+                      <span className="text-base text-muted-foreground">X-Content-Type-Options</span>
+                      <span className="text-base font-medium text-foreground">nosniff</span>
                     </div>
                     <div className="flex justify-between items-center py-1.5">
-                      <span className="text-xs text-muted-foreground">X-Frame-Options</span>
-                      <span className="text-xs font-medium text-foreground">DENY</span>
+                      <span className="text-base text-muted-foreground">X-Frame-Options</span>
+                      <span className="text-base font-medium text-foreground">DENY</span>
                     </div>
                     <div className="flex justify-between items-center py-1.5">
-                      <span className="text-xs text-muted-foreground">Middleware</span>
-                      <span className="text-xs font-medium text-foreground">Role-based access</span>
+                      <span className="text-base text-muted-foreground">Middleware</span>
+                      <span className="text-base font-medium text-foreground">Role-based access</span>
                     </div>
                   </CardContent>
                 </Card>

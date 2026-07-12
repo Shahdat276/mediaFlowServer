@@ -109,13 +109,13 @@ function LoginForm() {
       <div className="w-full max-w-md space-y-4 sm:space-y-6">
         {/* Hero text */}
         <div className="flex flex-col items-center text-center space-y-2">
-          <div className="flex items-center gap-1.5 sm:gap-2 rounded-full bg-primary/10 px-2.5 sm:px-3 py-1 text-xs sm:text-sm text-primary font-semibold tracking-wide">
+          <div className="flex items-center gap-1.5 sm:gap-2 rounded-full bg-primary/10 px-2.5 sm:px-3 py-1 text-base sm:text-lg text-primary font-semibold tracking-wide">
             <ShieldCheck className="size-3.5 sm:size-4" /> MediaFlow Secure Auth
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
             Welcome Back
           </h1>
-          <p className="text-muted-foreground text-xs sm:text-sm">
+          <p className="text-muted-foreground text-base sm:text-lg">
             Sign in to your dashboard to manage your flows
           </p>
         </div>
@@ -144,7 +144,7 @@ function LoginForm() {
               <form onSubmit={handleLogin}>
                 <CardContent className="space-y-4 pt-0">
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-muted-foreground font-medium text-xs">Email address</Label>
+                    <Label htmlFor="email" className="text-muted-foreground font-medium text-base">Email address</Label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground size-4" />
                       <Input
@@ -160,7 +160,7 @@ function LoginForm() {
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <Label htmlFor="password" className="text-muted-foreground font-medium text-xs">Password</Label>
+                      <Label htmlFor="password" className="text-muted-foreground font-medium text-base">Password</Label>
                     </div>
                     <div className="relative">
                       <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground size-4" />
@@ -192,7 +192,7 @@ function LoginForm() {
               <form onSubmit={handleRegister}>
                 <CardContent className="space-y-4 pt-0">
                   <div className="space-y-2">
-                    <Label htmlFor="reg-name" className="text-muted-foreground font-medium text-xs">Full Name</Label>
+                    <Label htmlFor="reg-name" className="text-muted-foreground font-medium text-base">Full Name</Label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground size-4" />
                       <Input
@@ -207,7 +207,7 @@ function LoginForm() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="reg-email" className="text-muted-foreground font-medium text-xs">Email address</Label>
+                    <Label htmlFor="reg-email" className="text-muted-foreground font-medium text-base">Email address</Label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground size-4" />
                       <Input
@@ -222,7 +222,7 @@ function LoginForm() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="reg-password" className="text-muted-foreground font-medium text-xs">Password</Label>
+                    <Label htmlFor="reg-password" className="text-muted-foreground font-medium text-base">Password</Label>
                     <div className="relative">
                       <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground size-4" />
                       <Input
@@ -263,7 +263,7 @@ export default function LoginPage() {
       <div className="flex min-h-screen items-center justify-center bg-[#070B14]">
         <div className="flex flex-col items-center gap-2">
           <Loader2 className="size-8 animate-spin text-blue-500" />
-          <span className="text-sm text-slate-400">Loading secure sign-in...</span>
+          <span className="text-lg text-slate-400">Loading secure sign-in...</span>
         </div>
       </div>
     }>

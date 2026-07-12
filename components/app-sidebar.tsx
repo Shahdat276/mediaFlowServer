@@ -140,8 +140,8 @@ export function AppSidebar() {
               className={cn(
                 "flex items-center font-medium rounded-lg transition-all",
                 collapsed
-                  ? "justify-center px-2 py-2.5 text-sm"
-                  : "gap-3 px-3 py-2.5 text-sm",
+                  ? "justify-center px-2 py-2.5 text-base"
+                  : "gap-3 px-3 py-2.5 text-base",
                 item.active
                   ? item.href === "/admin"
                     ? "bg-amber-500/10 text-amber-600 dark:text-amber-400"

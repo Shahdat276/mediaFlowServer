@@ -12,11 +12,11 @@ export default function UnauthorizedPage() {
             <ShieldAlert size={40} className="sm:size-12" />
           </div>
           <CardTitle className="text-xl sm:text-2xl font-bold tracking-tight text-destructive">Access Denied</CardTitle>
-          <CardDescription className="text-muted-foreground mt-2 text-sm">
+          <CardDescription className="text-muted-foreground mt-2 text-base">
             You do not have the required permissions to view this page.
           </CardDescription>
         </CardHeader>
-        <CardContent className="text-center text-sm text-muted-foreground py-4">
+        <CardContent className="text-center text-base text-muted-foreground py-4">
           This area is restricted to administrators only. If you believe this is an error, please log out and sign in with an authorized account.
         </CardContent>
         <CardFooter className="flex justify-center pt-6">

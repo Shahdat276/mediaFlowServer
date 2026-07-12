@@ -52,7 +52,7 @@ export function AppHeader() {
           </Button>
 
           {/* Page title */}
-          <span className="text-sm font-medium text-foreground">
+          <span className="text-base font-medium text-foreground">
             {pathname === "/dashboard" ? "Dashboard" : pathname === "/admin" ? "Admin Portal" : pathname === "/profile" ? "My Profile" : pathname === "/billing" ? "Billing History" : "MediaFlow"}
           </span>
         </div>
@@ -65,15 +65,15 @@ export function AppHeader() {
             className="hidden sm:flex items-center gap-1.5 hover:opacity-80 transition-opacity cursor-pointer"
           >
             <Avatar className="size-6">
-              <AvatarFallback className="bg-primary/10 text-primary text-[10px] font-semibold">
+              <AvatarFallback className="bg-primary/10 text-primary text-xs font-semibold">
                 {userInitials}
               </AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
-              <span className="text-[11px] font-medium text-foreground leading-none">
+              <span className="text-sm font-medium text-foreground leading-none">
                 {session?.user?.name || "User"}
               </span>
-              <span className="text-[9px] text-muted-foreground">
+              <span className="text-xs text-muted-foreground">
                 {session?.user?.role || "user"}
               </span>
             </div>

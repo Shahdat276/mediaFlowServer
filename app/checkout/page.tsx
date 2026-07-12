@@ -168,7 +168,7 @@ function CheckoutContent() {
       <div className="flex min-h-screen items-center justify-center bg-white">
         <div className="flex flex-col items-center gap-2">
           <Loader2 className="size-8 animate-spin text-blue-600" />
-          <span className="text-sm text-slate-500">Loading checkout...</span>
+          <span className="text-lg text-slate-500">Loading checkout...</span>
         </div>
       </div>
     );
@@ -182,14 +182,14 @@ function CheckoutContent() {
           <div className="md:col-span-5 flex flex-col gap-4">
             <Link 
               href="/dashboard"
-              className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-900 transition-colors"
+              className="inline-flex items-center gap-1.5 text-base text-slate-500 hover:text-slate-900 transition-colors"
             >
               <ArrowLeft className="size-3.5" /> Back to Dashboard
             </Link>
 
             <div>
               <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 mb-1">Secure Checkout</h1>
-              <p className="text-xs text-slate-500">Send money via bKash or Nagad, then submit your Transaction ID below.</p>
+              <p className="text-base text-slate-500">Send money via bKash or Nagad, then submit your Transaction ID below.</p>
             </div>
 
             {/* Billing Toggle */}
@@ -197,7 +197,7 @@ function CheckoutContent() {
               <button
                 type="button"
                 onClick={() => setBilling("monthly")}
-                className={`flex-1 py-2 rounded-md text-xs font-bold transition-all ${
+                className={`flex-1 py-2 rounded-md text-base font-bold transition-all ${
                   billing === "monthly" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-500 hover:bg-slate-200"
                 }`}
               >
@@ -206,18 +206,18 @@ function CheckoutContent() {
               <button
                 type="button"
                 onClick={() => setBilling("yearly")}
-                className={`flex-1 py-2 rounded-md text-xs font-bold transition-all relative ${
+                className={`flex-1 py-2 rounded-md text-base font-bold transition-all relative ${
                   billing === "yearly" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-500 hover:bg-slate-200"
                 }`}
               >
                 Yearly
-                <span className="absolute -top-2 -right-1 bg-emerald-500 text-white text-[8px] font-bold px-1 rounded-full">Save 33%</span>
+                <span className="absolute -top-2 -right-1 bg-emerald-500 text-white text-lg font-bold px-1 rounded-full">Save 33%</span>
               </button>
             </div>
 
             {/* Package Selector */}
             <div className="space-y-2">
-              <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">Choose Your Package</label>
+              <label className="text-base font-bold text-slate-500 uppercase tracking-wide">Choose Your Package</label>
               {plans.map((p) => {
                 const isSelected = p.id === selectedPlanId;
                 const pPrice = getPrice(p);
@@ -234,15 +234,15 @@ function CheckoutContent() {
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className={`text-sm font-bold ${isSelected ? "text-blue-700" : "text-slate-900"}`}>{p.name}</span>
-                      <span className={`text-sm font-black ${isSelected ? "text-blue-600" : "text-slate-700"}`}>
+                      <span className={`text-lg font-bold ${isSelected ? "text-blue-700" : "text-slate-900"}`}>{p.name}</span>
+                      <span className={`text-lg font-black ${isSelected ? "text-blue-600" : "text-slate-700"}`}>
                         {isFree ? "Free" : `৳${pPrice}`}
                       </span>
                     </div>
-                    <p className="text-[10px] text-slate-500 mb-1.5">{p.description}</p>
+                    <p className="text-base text-slate-500 mb-1.5">{p.description}</p>
                     <div className="grid grid-cols-1 gap-1">
                       {p.features.slice(0, 3).map((feat, i) => (
-                        <p key={i} className="flex items-center gap-1.5 text-[10px] text-slate-500">
+                        <p key={i} className="flex items-center gap-1.5 text-base text-slate-500">
                           <Check className="size-3 text-emerald-500 shrink-0" />
                           <span>{feat}</span>
                         </p>
@@ -258,18 +258,18 @@ function CheckoutContent() {
               <CardContent className="px-4 py-3">
                 <div className="flex justify-between items-center">
                   <div>
-                    <p className="text-sm font-bold text-slate-900">{selectedPlan.name}</p>
-                    <p className="text-[10px] text-slate-500 capitalize">{displayPeriod} billing · Pending verification</p>
+                    <p className="text-lg font-bold text-slate-900">{selectedPlan.name}</p>
+                    <p className="text-base text-slate-500 capitalize">{displayPeriod} billing · Pending verification</p>
                   </div>
                   <div className="text-right">
                     <p className="text-lg font-black text-blue-600">৳{price}</p>
-                    <p className="text-[9px] text-slate-500">per {displayPeriod}</p>
+                    <p className="text-lg text-slate-500">per {displayPeriod}</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <div className="flex items-center gap-2 text-[10px] text-slate-500 bg-white rounded-lg p-3">
+            <div className="flex items-center gap-2 text-base text-slate-500 bg-white rounded-lg p-3">
               <ShieldCheck className="size-4 text-emerald-500 shrink-0" />
               <span>Payments are manually verified. Admin reviews transactions regularly to activate licenses.</span>
             </div>
@@ -279,13 +279,13 @@ function CheckoutContent() {
           <Card className="md:col-span-7 bg-white text-slate-900">
             <CardHeader className="px-5 pt-5 pb-3">
               <CardTitle className="text-base font-bold text-slate-900">Payment Instructions</CardTitle>
-              <CardDescription className="text-xs text-slate-500">Follow the steps below to complete your payment</CardDescription>
+              <CardDescription className="text-base text-slate-500">Follow the steps below to complete your payment</CardDescription>
             </CardHeader>
             <CardContent className="px-5 pb-5 space-y-5">
               {/* Step 1: Choose method */}
               <div className="space-y-2">
-                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
-                  <span className="flex size-4 items-center justify-center rounded-full bg-blue-600 text-white text-[9px] font-bold">1</span>
+                <label className="text-base font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                  <span className="flex size-4 items-center justify-center rounded-full bg-blue-600 text-white text-lg font-bold">1</span>
                   Choose Payment Method
                 </label>
                 <div className="grid grid-cols-2 gap-3">
@@ -299,7 +299,7 @@ function CheckoutContent() {
                     }`}
                   >
                     <Image src="/bkash-logo.png" alt="bKash" width={48} height={48} className="object-contain" />
-                    <span className={`text-xs font-bold uppercase tracking-wider ${paymentMethod === "bkash" ? "text-rose-600" : "text-slate-500"}`}>
+                    <span className={`text-base font-bold uppercase tracking-wider ${paymentMethod === "bkash" ? "text-rose-600" : "text-slate-500"}`}>
                       bKash
                     </span>
                   </button>
@@ -314,7 +314,7 @@ function CheckoutContent() {
                     }`}
                   >
                     <Image src="/nagad-logo.png" alt="Nagad" width={48} height={48} className="object-contain" />
-                    <span className={`text-xs font-bold uppercase tracking-wider ${paymentMethod === "nagad" ? "text-orange-600" : "text-slate-500"}`}>
+                    <span className={`text-base font-bold uppercase tracking-wider ${paymentMethod === "nagad" ? "text-orange-600" : "text-slate-500"}`}>
                       Nagad
                     </span>
                   </button>
@@ -323,8 +323,8 @@ function CheckoutContent() {
 
               {/* Step 2: Send money */}
               <div className="space-y-2">
-                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
-                  <span className="flex size-4 items-center justify-center rounded-full bg-blue-600 text-white text-[9px] font-bold">2</span>
+                <label className="text-base font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                  <span className="flex size-4 items-center justify-center rounded-full bg-blue-600 text-white text-lg font-bold">2</span>
                   Send Money to this Number
                 </label>
                 <div className="flex items-center justify-between bg-slate-50 rounded-lg p-3 ring-1 ring-slate-200">
@@ -336,13 +336,13 @@ function CheckoutContent() {
                     type="button" 
                     onClick={handleCopyNumber}
                     variant="outline"
-                    className="h-7 text-[10px] font-bold px-3 gap-1"
+                    className="h-7 text-base font-bold px-3 gap-1"
                   >
                     <Copy className="size-3" />
                     {copied ? "Copied!" : "Copy"}
                   </Button>
                 </div>
-                <p className="text-[10px] text-slate-500 leading-relaxed">
+                <p className="text-base text-slate-500 leading-relaxed">
                   Open your {paymentMethod === "bkash" ? "bKash" : "Nagad"} app, select <strong>Send Money</strong>, enter the number above, and send <strong>৳{price}</strong>.
                 </p>
               </div>
@@ -350,14 +350,14 @@ function CheckoutContent() {
               {/* Step 3: Submit details */}
               <form onSubmit={handlePaymentSubmit} className="space-y-3">
                 <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
-                    <span className="flex size-4 items-center justify-center rounded-full bg-blue-600 text-white text-[9px] font-bold">3</span>
+                  <label className="text-base font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span className="flex size-4 items-center justify-center rounded-full bg-blue-600 text-white text-lg font-bold">3</span>
                     Submit Verification Details
                   </label>
                 </div>
 
                 <div className="space-y-1.5">
-                  <Label htmlFor="sender" className="text-xs text-slate-500">Your Sender Number</Label>
+                  <Label htmlFor="sender" className="text-base text-slate-500">Your Sender Number</Label>
                   <Input
                     id="sender"
                     type="text"
@@ -365,12 +365,12 @@ function CheckoutContent() {
                     placeholder="017XXXXXXXX"
                     value={senderNumber}
                     onChange={(e) => setSenderNumber(e.target.value.replace(/\D/g, "").substring(0, 11))}
-                    className="bg-slate-50 text-slate-900 text-sm font-mono placeholder:text-slate-400"
+                    className="bg-slate-50 text-slate-900 text-lg font-mono placeholder:text-slate-400"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <Label htmlFor="txn" className="text-xs text-slate-500">Transaction ID (TxnID)</Label>
+                  <Label htmlFor="txn" className="text-base text-slate-500">Transaction ID (TxnID)</Label>
                   <Input
                     id="txn"
                     type="text"
@@ -378,13 +378,13 @@ function CheckoutContent() {
                     placeholder="E.g., A8X9K2PL"
                     value={transactionId}
                     onChange={(e) => setTransactionId(e.target.value.toUpperCase().trim())}
-                    className="bg-slate-50 text-slate-900 text-sm font-mono tracking-widest placeholder:text-slate-400"
+                    className="bg-slate-50 text-slate-900 text-lg font-mono tracking-widest placeholder:text-slate-400"
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 mt-2 text-xs gap-1.5"
+                  className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 mt-2 text-base gap-1.5"
                 >
                   <ShieldCheck className="size-3.5" /> Submit Verification Request
                 </Button>
@@ -398,7 +398,7 @@ function CheckoutContent() {
         <div className="w-full max-w-md bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center mt-20">
           <Loader2 className="size-12 animate-spin text-blue-600 mb-6" />
           <h2 className="text-xl font-bold text-slate-900 mb-2">Submitting Details</h2>
-          <p className="text-xs text-slate-500 leading-relaxed max-w-xs">{processStatus}</p>
+          <p className="text-base text-slate-500 leading-relaxed max-w-xs">{processStatus}</p>
         </div>
       )}
 
@@ -408,12 +408,12 @@ function CheckoutContent() {
             <CheckCircle2 className="size-8 text-amber-600 animate-pulse" />
           </div>
           <h2 className="text-xl font-extrabold text-slate-900 mb-2">Verification Submitted!</h2>
-          <p className="text-xs text-slate-500 leading-relaxed max-w-xs mb-6">
+          <p className="text-base text-slate-500 leading-relaxed max-w-xs mb-6">
             Your transaction <strong className="text-slate-700">{transactionId}</strong> has been logged. Admin will verify it and activate your account shortly.
           </p>
           <Button
             onClick={() => router.push("/dashboard")}
-            className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 text-xs"
+            className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 text-base"
           >
             Go to Dashboard
           </Button>
@@ -429,7 +429,7 @@ export default function CheckoutPage() {
       <div className="flex min-h-screen items-center justify-center bg-white">
         <div className="flex flex-col items-center gap-2">
           <Loader2 className="size-8 animate-spin text-blue-600" />
-          <span className="text-sm text-slate-500">Loading checkout...</span>
+          <span className="text-lg text-slate-500">Loading checkout...</span>
         </div>
       </div>
     }>

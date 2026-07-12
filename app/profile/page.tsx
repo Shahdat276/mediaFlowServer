@@ -132,7 +132,7 @@ export default function ProfilePage() {
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-2">
           <Loader2 className="size-8 animate-spin text-primary" />
-          <span className="text-sm text-muted-foreground">Loading profile...</span>
+          <span className="text-lg text-muted-foreground">Loading profile...</span>
         </div>
       </div>
     );
@@ -163,7 +163,7 @@ export default function ProfilePage() {
               {/* Page Title */}
               <div className="pb-3 mb-4">
                 <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">My Profile</h1>
-                <p className="text-muted-foreground text-[11px]">Manage your account settings and preferences</p>
+                <p className="text-muted-foreground text-lg">Manage your account settings and preferences</p>
               </div>
 
               {/* Profile Header Card */}
@@ -177,22 +177,22 @@ export default function ProfilePage() {
                     </Avatar>
                     <div className="flex-1 text-center sm:text-left space-y-1">
                       <h2 className="text-lg sm:text-xl font-bold text-foreground">{session.user.name}</h2>
-                      <p className="text-sm text-muted-foreground flex items-center justify-center sm:justify-start gap-1.5">
+                      <p className="text-lg text-muted-foreground flex items-center justify-center sm:justify-start gap-1.5">
                         <Mail className="size-3.5" />
                         {session.user.email}
                       </p>
                       <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-1">
-                        <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-semibold text-primary">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-0.5 text-lg font-semibold text-primary">
                           <Shield className="size-3" />
                           {session.user.role === "admin" ? "Administrator" : "Member"}
                         </span>
                         {subData?.active && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-semibold text-emerald-500">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-lg font-semibold text-emerald-500">
                             <BadgeCheck className="size-3" />
                             {subData.plan} Plan
                           </span>
                         )}
-                        <span className="inline-flex items-center gap-1 text-muted-foreground text-[10px]">
+                        <span className="inline-flex items-center gap-1 text-muted-foreground text-lg">
                           <Calendar className="size-3" />
                           Joined {memberSince}
                         </span>
@@ -206,16 +206,16 @@ export default function ProfilePage() {
                 {/* Update Name */}
                 <Card className="bg-card text-card-foreground">
                   <CardHeader className="px-4 pt-4 pb-2">
-                    <CardTitle className="text-sm font-bold text-foreground flex items-center gap-1.5">
+                    <CardTitle className="text-lg font-bold text-foreground flex items-center gap-1.5">
                       <User className="size-4 text-primary" />
                       Display Name
                     </CardTitle>
-                    <CardDescription className="text-[10px]">Update your public display name</CardDescription>
+                    <CardDescription className="text-lg">Update your public display name</CardDescription>
                   </CardHeader>
                   <CardContent className="px-4 pb-4 pt-0">
                     <form onSubmit={handleUpdateName} className="space-y-3">
                       <div className="space-y-1.5">
-                        <Label htmlFor="profile-name" className="text-xs text-muted-foreground">Full Name</Label>
+                        <Label htmlFor="profile-name" className="text-base text-muted-foreground">Full Name</Label>
                         <div className="relative">
                           <User className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground size-3.5" />
                           <Input
@@ -224,7 +224,7 @@ export default function ProfilePage() {
                             placeholder="Your name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="pl-9 bg-background text-foreground text-sm"
+                            className="pl-9 bg-background text-foreground text-lg"
                             required
                           />
                         </div>
@@ -232,7 +232,7 @@ export default function ProfilePage() {
                       <Button
                         type="submit"
                         disabled={savingName}
-                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium text-xs gap-1.5 py-2"
+                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium text-base gap-1.5 py-2"
                       >
                         {savingName ? <Loader2 className="size-3.5 animate-spin" /> : <Save className="size-3.5" />}
                         {savingName ? "Saving..." : "Save Changes"}
@@ -244,32 +244,32 @@ export default function ProfilePage() {
                 {/* Account Info */}
                 <Card className="bg-card text-card-foreground">
                   <CardHeader className="px-4 pt-4 pb-2">
-                    <CardTitle className="text-sm font-bold text-foreground flex items-center gap-1.5">
+                    <CardTitle className="text-lg font-bold text-foreground flex items-center gap-1.5">
                       <Shield className="size-4 text-primary" />
                       Account Details
                     </CardTitle>
-                    <CardDescription className="text-[10px]">Your account information</CardDescription>
+                    <CardDescription className="text-lg">Your account information</CardDescription>
                   </CardHeader>
                   <CardContent className="px-4 pb-4 pt-0 space-y-2.5">
                     <div className="flex justify-between items-center py-1">
-                      <span className="text-xs text-muted-foreground">Email</span>
-                      <span className="text-xs font-medium text-foreground">{session.user.email}</span>
+                      <span className="text-base text-muted-foreground">Email</span>
+                      <span className="text-base font-medium text-foreground">{session.user.email}</span>
                     </div>
                     <div className="flex justify-between items-center py-1">
-                      <span className="text-xs text-muted-foreground">Role</span>
-                      <span className="text-xs font-medium text-foreground capitalize">{session.user.role || "user"}</span>
+                      <span className="text-base text-muted-foreground">Role</span>
+                      <span className="text-base font-medium text-foreground capitalize">{session.user.role || "user"}</span>
                     </div>
                     <div className="flex justify-between items-center py-1">
-                      <span className="text-xs text-muted-foreground">User ID</span>
-                      <span className="text-[10px] font-mono text-muted-foreground">{session.user.id}</span>
+                      <span className="text-base text-muted-foreground">User ID</span>
+                      <span className="text-lg font-mono text-muted-foreground">{session.user.id}</span>
                     </div>
                     <div className="flex justify-between items-center py-1">
-                      <span className="text-xs text-muted-foreground">Member Since</span>
-                      <span className="text-xs font-medium text-foreground">{memberSince}</span>
+                      <span className="text-base text-muted-foreground">Member Since</span>
+                      <span className="text-base font-medium text-foreground">{memberSince}</span>
                     </div>
                     <div className="flex justify-between items-center py-1">
-                      <span className="text-xs text-muted-foreground">Subscription</span>
-                      <span className="text-xs font-medium">
+                      <span className="text-base text-muted-foreground">Subscription</span>
+                      <span className="text-base font-medium">
                         {loadingSub ? (
                           <Loader2 className="size-3 animate-spin text-muted-foreground inline" />
                         ) : subData?.active ? (
@@ -286,17 +286,17 @@ export default function ProfilePage() {
               {/* Change Password */}
               <Card className="bg-card text-card-foreground mt-4">
                 <CardHeader className="px-4 pt-4 pb-2">
-                  <CardTitle className="text-sm font-bold text-foreground flex items-center gap-1.5">
+                  <CardTitle className="text-lg font-bold text-foreground flex items-center gap-1.5">
                     <KeyRound className="size-4 text-primary" />
                     Change Password
                   </CardTitle>
-                  <CardDescription className="text-[10px]">Update your password to keep your account secure</CardDescription>
+                  <CardDescription className="text-lg">Update your password to keep your account secure</CardDescription>
                 </CardHeader>
                 <CardContent className="px-4 pb-4 pt-0">
                   <form onSubmit={handleChangePassword} className="space-y-3">
                     <div className="grid gap-3 grid-cols-1 sm:grid-cols-3">
                       <div className="space-y-1.5">
-                        <Label htmlFor="current-pw" className="text-xs text-muted-foreground">Current Password</Label>
+                        <Label htmlFor="current-pw" className="text-base text-muted-foreground">Current Password</Label>
                         <div className="relative">
                           <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground size-3.5" />
                           <Input
@@ -305,7 +305,7 @@ export default function ProfilePage() {
                             placeholder="••••••••"
                             value={currentPassword}
                             onChange={(e) => setCurrentPassword(e.target.value)}
-                            className="pl-9 pr-9 bg-background text-foreground text-sm"
+                            className="pl-9 pr-9 bg-background text-foreground text-lg"
                             required
                           />
                           <button
@@ -318,7 +318,7 @@ export default function ProfilePage() {
                         </div>
                       </div>
                       <div className="space-y-1.5">
-                        <Label htmlFor="new-pw" className="text-xs text-muted-foreground">New Password</Label>
+                        <Label htmlFor="new-pw" className="text-base text-muted-foreground">New Password</Label>
                         <div className="relative">
                           <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground size-3.5" />
                           <Input
@@ -327,7 +327,7 @@ export default function ProfilePage() {
                             placeholder="••••••••"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
-                            className="pl-9 pr-9 bg-background text-foreground text-sm"
+                            className="pl-9 pr-9 bg-background text-foreground text-lg"
                             required
                           />
                           <button
@@ -340,7 +340,7 @@ export default function ProfilePage() {
                         </div>
                       </div>
                       <div className="space-y-1.5">
-                        <Label htmlFor="confirm-pw" className="text-xs text-muted-foreground">Confirm New Password</Label>
+                        <Label htmlFor="confirm-pw" className="text-base text-muted-foreground">Confirm New Password</Label>
                         <div className="relative">
                           <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground size-3.5" />
                           <Input
@@ -349,7 +349,7 @@ export default function ProfilePage() {
                             placeholder="••••••••"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            className="pl-9 pr-9 bg-background text-foreground text-sm"
+                            className="pl-9 pr-9 bg-background text-foreground text-lg"
                             required
                           />
                           <button
@@ -365,7 +365,7 @@ export default function ProfilePage() {
                     <Button
                       type="submit"
                       disabled={changingPassword}
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium text-xs gap-1.5 py-2 px-4"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium text-base gap-1.5 py-2 px-4"
                     >
                       {changingPassword ? <Loader2 className="size-3.5 animate-spin" /> : <KeyRound className="size-3.5" />}
                       {changingPassword ? "Changing..." : "Change Password"}

@@ -53,7 +53,7 @@ export default function AdminDashboard() {
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-2">
           <Shield className="size-8 animate-pulse text-amber-500" />
-          <span className="text-sm text-muted-foreground">Loading Admin Console...</span>
+          <span className="text-lg text-muted-foreground">Loading Admin Console...</span>
         </div>
       </div>
     );
@@ -72,15 +72,15 @@ export default function AdminDashboard() {
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 flex-wrap">
                     <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">Admin Portal</h1>
-                    <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] text-amber-600 dark:text-amber-400 font-semibold">
+                    <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-base text-amber-600 dark:text-amber-400 font-semibold">
                       System Console
                     </span>
                   </div>
-                  <p className="text-muted-foreground text-[11px] truncate">
+                  <p className="text-muted-foreground text-base truncate">
                     Active Session: {session?.user?.email}
                   </p>
                 </div>
-                <Button variant="outline" size="sm" onClick={fetchUsers} disabled={fetchingUsers} className="bg-card text-foreground hover:bg-accent text-xs h-7">
+                <Button variant="outline" size="sm" onClick={fetchUsers} disabled={fetchingUsers} className="bg-card text-foreground hover:bg-accent text-base h-7">
                   {fetchingUsers ? <Loader2 className="size-3 animate-spin" /> : "Refresh"}
                 </Button>
               </div>
@@ -94,8 +94,8 @@ export default function AdminDashboard() {
                         <Users className="size-3 text-amber-500" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Total Users</p>
-                        <p className="text-sm font-bold text-foreground leading-tight">{dbUsers.length || "..."}</p>
+                        <p className="text-lg text-muted-foreground uppercase tracking-wider font-semibold">Total Users</p>
+                        <p className="text-lg font-bold text-foreground leading-tight">{dbUsers.length || "..."}</p>
                       </div>
                     </div>
                   </div>
@@ -107,8 +107,8 @@ export default function AdminDashboard() {
                         <CreditCard className="size-3 text-amber-500" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Active Plans</p>
-                        <p className="text-sm font-bold text-foreground leading-tight">{plans.filter((p: any) => p.active).length || "..."}</p>
+                        <p className="text-lg text-muted-foreground uppercase tracking-wider font-semibold">Active Plans</p>
+                        <p className="text-lg font-bold text-foreground leading-tight">{plans.filter((p: any) => p.active).length || "..."}</p>
                       </div>
                     </div>
                   </div>
@@ -120,8 +120,8 @@ export default function AdminDashboard() {
                         <ShieldAlert className="size-3 text-amber-500 animate-pulse" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Privileges</p>
-                        <p className="text-sm font-bold text-foreground leading-tight">Root Admin</p>
+                        <p className="text-lg text-muted-foreground uppercase tracking-wider font-semibold">Privileges</p>
+                        <p className="text-lg font-bold text-foreground leading-tight">Root Admin</p>
                       </div>
                     </div>
                   </div>
@@ -138,8 +138,8 @@ export default function AdminDashboard() {
                       </div>
                       <ArrowRight className="size-4 text-muted-foreground group-hover:text-amber-500 transition-colors" />
                     </div>
-                    <h3 className="text-sm font-bold text-foreground">User Management</h3>
-                    <p className="text-[10px] text-muted-foreground mt-0.5">Create admins, manage roles, view all users</p>
+                    <h3 className="text-lg font-bold text-foreground">User Management</h3>
+                    <p className="text-base text-muted-foreground mt-0.5">Create admins, manage roles, view all users</p>
                   </div>
                 </Link>
                 <Link href="/admin/plans">
@@ -150,8 +150,8 @@ export default function AdminDashboard() {
                       </div>
                       <ArrowRight className="size-4 text-muted-foreground group-hover:text-amber-500 transition-colors" />
                     </div>
-                    <h3 className="text-sm font-bold text-foreground">Subscription Plans</h3>
-                    <p className="text-[10px] text-muted-foreground mt-0.5">Create and manage pricing plans</p>
+                    <h3 className="text-lg font-bold text-foreground">Subscription Plans</h3>
+                    <p className="text-base text-muted-foreground mt-0.5">Create and manage pricing plans</p>
                   </div>
                 </Link>
                 <Link href="/admin/transactions">
@@ -162,8 +162,8 @@ export default function AdminDashboard() {
                       </div>
                       <ArrowRight className="size-4 text-muted-foreground group-hover:text-amber-500 transition-colors" />
                     </div>
-                    <h3 className="text-sm font-bold text-foreground">Payment Verifications</h3>
-                    <p className="text-[10px] text-muted-foreground mt-0.5">Approve bKash/Nagad manual TxnIDs</p>
+                    <h3 className="text-lg font-bold text-foreground">Payment Verifications</h3>
+                    <p className="text-base text-muted-foreground mt-0.5">Approve bKash/Nagad manual TxnIDs</p>
                   </div>
                 </Link>
                 <Link href="/admin/settings">
@@ -174,8 +174,8 @@ export default function AdminDashboard() {
                       </div>
                       <ArrowRight className="size-4 text-muted-foreground group-hover:text-amber-500 transition-colors" />
                     </div>
-                    <h3 className="text-sm font-bold text-foreground">System Settings</h3>
-                    <p className="text-[10px] text-muted-foreground mt-0.5">Auth, database, performance config</p>
+                    <h3 className="text-lg font-bold text-foreground">System Settings</h3>
+                    <p className="text-base text-muted-foreground mt-0.5">Auth, database, performance config</p>
                   </div>
                 </Link>
               </div>
@@ -185,11 +185,11 @@ export default function AdminDashboard() {
                 <CardHeader className="px-3 pt-3 pb-2">
                   <div className="flex items-center gap-1.5">
                     <Terminal className="size-3.5 text-amber-500" />
-                    <CardTitle className="text-sm font-bold text-foreground">System Security Log</CardTitle>
+                    <CardTitle className="text-lg font-bold text-foreground">System Security Log</CardTitle>
                   </div>
-                  <CardDescription className="text-muted-foreground text-[10px]">Realtime proxy interception trace</CardDescription>
+                  <CardDescription className="text-muted-foreground text-base">Realtime proxy interception trace</CardDescription>
                 </CardHeader>
-                <CardContent className="bg-muted rounded-lg p-2.5 font-mono text-[10px] text-muted-foreground space-y-1 overflow-x-auto mx-3 mb-3">
+                <CardContent className="bg-muted rounded-lg p-2.5 font-mono text-base text-muted-foreground space-y-1 overflow-x-auto mx-3 mb-3">
                   <p className="text-muted-foreground/60 whitespace-nowrap">[2026-07-06T10:55:00] PROXY: Intercepted route request to /admin</p>
                   <p className="text-emerald-500 whitespace-nowrap">[2026-07-06T10:55:00] PROXY: Session cookie identified</p>
                   <p className="text-emerald-500 whitespace-nowrap">[2026-07-06T10:55:01] PROXY: API response verified user role = admin</p>

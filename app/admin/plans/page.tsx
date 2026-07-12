@@ -113,7 +113,7 @@ export default function AdminPlansPage() {
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-2">
           <Shield className="size-8 animate-pulse text-amber-500" />
-          <span className="text-sm text-muted-foreground">Loading...</span>
+          <span className="text-lg text-muted-foreground">Loading...</span>
         </div>
       </div>
     );
@@ -134,15 +134,15 @@ export default function AdminPlansPage() {
                     <CreditCard className="size-5 text-amber-500" />
                     <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">Subscription Plans</h1>
                   </div>
-                  <p className="text-muted-foreground text-[11px]">
+                  <p className="text-muted-foreground text-base">
                     Create and manage pricing plans for your users
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Button variant="outline" size="sm" onClick={fetchPlans} disabled={fetchingPlans} className="bg-card text-foreground hover:bg-accent text-xs h-7">
+                  <Button variant="outline" size="sm" onClick={fetchPlans} disabled={fetchingPlans} className="bg-card text-foreground hover:bg-accent text-base h-7">
                     {fetchingPlans ? <Loader2 className="size-3 animate-spin" /> : "Refresh"}
                   </Button>
-                  <Button size="sm" onClick={openCreatePlan} className="bg-amber-500 hover:bg-amber-600 text-white text-xs h-7">
+                  <Button size="sm" onClick={openCreatePlan} className="bg-amber-500 hover:bg-amber-600 text-white text-base h-7">
                     <Plus className="size-3 mr-1" /> Add Plan
                   </Button>
                 </div>
@@ -157,8 +157,8 @@ export default function AdminPlansPage() {
                         <CreditCard className="size-3 text-amber-500" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Total Plans</p>
-                        <p className="text-sm font-bold text-foreground leading-tight">{plans.length}</p>
+                        <p className="text-lg text-muted-foreground uppercase tracking-wider font-semibold">Total Plans</p>
+                        <p className="text-lg font-bold text-foreground leading-tight">{plans.length}</p>
                       </div>
                     </div>
                   </div>
@@ -170,8 +170,8 @@ export default function AdminPlansPage() {
                         <CreditCard className="size-3 text-emerald-500" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Active</p>
-                        <p className="text-sm font-bold text-foreground leading-tight">{plans.filter(p => p.active).length}</p>
+                        <p className="text-lg text-muted-foreground uppercase tracking-wider font-semibold">Active</p>
+                        <p className="text-lg font-bold text-foreground leading-tight">{plans.filter(p => p.active).length}</p>
                       </div>
                     </div>
                   </div>
@@ -181,8 +181,8 @@ export default function AdminPlansPage() {
               {/* Plans Grid */}
               <Card className="bg-card text-card-foreground">
                 <CardHeader className="px-3 pt-3 pb-2">
-                  <CardTitle className="text-sm font-bold text-foreground">All Plans</CardTitle>
-                  <CardDescription className="text-muted-foreground text-[10px]">
+                  <CardTitle className="text-lg font-bold text-foreground">All Plans</CardTitle>
+                  <CardDescription className="text-muted-foreground text-base">
                     Manage your subscription pricing
                   </CardDescription>
                 </CardHeader>
@@ -190,7 +190,7 @@ export default function AdminPlansPage() {
                   {fetchingPlans ? (
                     <div className="flex justify-center py-6"><Loader2 className="size-5 animate-spin text-amber-500" /></div>
                   ) : plans.length === 0 ? (
-                    <div className="text-center py-6 text-muted-foreground text-xs">
+                    <div className="text-center py-6 text-muted-foreground text-base">
                       No plans yet. Click "Add Plan" to create your first subscription plan.
                     </div>
                   ) : (
@@ -199,8 +199,8 @@ export default function AdminPlansPage() {
                         <div key={plan.id} className={`rounded-lg p-3 ${!plan.active ? "opacity-50" : ""}`}>
                           <div className="flex items-start justify-between mb-2">
                             <div>
-                              <h3 className="text-sm font-bold text-foreground">{plan.name}</h3>
-                              {plan.description && <p className="text-[10px] text-muted-foreground mt-0.5">{plan.description}</p>}
+                              <h3 className="text-lg font-bold text-foreground">{plan.name}</h3>
+                              {plan.description && <p className="text-base text-muted-foreground mt-0.5">{plan.description}</p>}
                             </div>
                             <div className="flex items-center gap-1">
                               <button onClick={() => openEditPlan(plan)} className="p-1 rounded hover:bg-accent text-muted-foreground hover:text-foreground">
@@ -213,10 +213,10 @@ export default function AdminPlansPage() {
                           </div>
                           <div className="flex items-baseline gap-1 mb-2">
                             <span className="text-lg font-extrabold text-foreground">৳{plan.price}</span>
-                            <span className="text-[10px] text-muted-foreground">/{plan.period}</span>
+                            <span className="text-base text-muted-foreground">/{plan.period}</span>
                           </div>
                           <div className="flex items-center gap-2 pt-2">
-                            <span className={`rounded-full px-1.5 py-0.5 text-[9px] font-semibold ${plan.active ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" : "bg-muted text-muted-foreground"}`}>
+                            <span className={`rounded-full px-1.5 py-0.5 text-lg font-semibold ${plan.active ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" : "bg-muted text-muted-foreground"}`}>
                               {plan.active ? "Active" : "Inactive"}
                             </span>
                           </div>
@@ -238,22 +238,22 @@ export default function AdminPlansPage() {
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowPlanDialog(false)} />
           <div className="relative w-full max-w-md rounded-lg bg-card max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between px-4 py-2.5 sticky top-0 bg-card z-10">
-              <h2 className="text-sm font-bold text-foreground">{editingPlan ? "Edit Plan" : "Create Plan"}</h2>
+              <h2 className="text-lg font-bold text-foreground">{editingPlan ? "Edit Plan" : "Create Plan"}</h2>
               <button onClick={() => setShowPlanDialog(false)} className="text-muted-foreground hover:text-foreground"><X className="size-4" /></button>
             </div>
             <div className="p-4 space-y-3">
               <div className="grid grid-cols-2 gap-3">
                 <div className="col-span-2">
-                  <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Plan Name</label>
-                  <input type="text" value={planForm.name} onChange={(e) => setPlanForm({ ...planForm, name: e.target.value })} placeholder="e.g. Pro, Enterprise" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                  <label className="text-base font-semibold text-muted-foreground uppercase tracking-wider">Plan Name</label>
+                  <input type="text" value={planForm.name} onChange={(e) => setPlanForm({ ...planForm, name: e.target.value })} placeholder="e.g. Pro, Enterprise" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
                 </div>
                 <div>
-                  <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Price (৳)</label>
-                  <input type="number" min="0" step="0.01" value={planForm.price} onChange={(e) => setPlanForm({ ...planForm, price: parseFloat(e.target.value) || 0 })} className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                  <label className="text-base font-semibold text-muted-foreground uppercase tracking-wider">Price (৳)</label>
+                  <input type="number" min="0" step="0.01" value={planForm.price} onChange={(e) => setPlanForm({ ...planForm, price: parseFloat(e.target.value) || 0 })} className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
                 </div>
                 <div>
-                  <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Period</label>
-                  <select value={planForm.period} onChange={(e) => setPlanForm({ ...planForm, period: e.target.value })} className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-amber-500">
+                  <label className="text-base font-semibold text-muted-foreground uppercase tracking-wider">Period</label>
+                  <select value={planForm.period} onChange={(e) => setPlanForm({ ...planForm, period: e.target.value })} className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-amber-500">
                     <option value="month">/month</option>
                     <option value="year">/year</option>
                     <option value="week">/week</option>
@@ -262,19 +262,19 @@ export default function AdminPlansPage() {
                 </div>
               </div>
               <div>
-                <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Description</label>
-                <input type="text" value={planForm.description} onChange={(e) => setPlanForm({ ...planForm, description: e.target.value })} placeholder="Short description of the plan" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                <label className="text-base font-semibold text-muted-foreground uppercase tracking-wider">Description</label>
+                <input type="text" value={planForm.description} onChange={(e) => setPlanForm({ ...planForm, description: e.target.value })} placeholder="Short description of the plan" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
               </div>
               <div>
                 <label className="flex items-center gap-1.5 cursor-pointer">
                   <input type="checkbox" checked={planForm.active} onChange={(e) => setPlanForm({ ...planForm, active: e.target.checked })} className="rounded accent-emerald-500" />
-                  <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Active</span>
+                  <span className="text-base font-semibold text-muted-foreground uppercase tracking-wider">Active</span>
                 </label>
               </div>
             </div>
             <div className="flex items-center justify-end gap-2 px-4 py-2.5 sticky bottom-0 bg-card">
-              <Button variant="outline" size="sm" onClick={() => setShowPlanDialog(false)} className="text-xs h-7">Cancel</Button>
-              <Button size="sm" onClick={handleSavePlan} disabled={savingPlan} className="bg-amber-500 hover:bg-amber-600 text-white text-xs h-7">
+              <Button variant="outline" size="sm" onClick={() => setShowPlanDialog(false)} className="text-base h-7">Cancel</Button>
+              <Button size="sm" onClick={handleSavePlan} disabled={savingPlan} className="bg-amber-500 hover:bg-amber-600 text-white text-base h-7">
                 {savingPlan ? <Loader2 className="size-3 animate-spin mr-1" /> : null}
                 {savingPlan ? "Saving..." : editingPlan ? "Update Plan" : "Create Plan"}
               </Button>

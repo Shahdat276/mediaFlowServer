@@ -131,7 +131,7 @@ export default function AdminUsersPage() {
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-2">
           <Shield className="size-8 animate-pulse text-amber-500" />
-          <span className="text-sm text-muted-foreground">Loading...</span>
+          <span className="text-lg text-muted-foreground">Loading...</span>
         </div>
       </div>
     );
@@ -152,15 +152,15 @@ export default function AdminUsersPage() {
                     <Users className="size-5 text-amber-500" />
                     <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">User Management</h1>
                   </div>
-                  <p className="text-muted-foreground text-[11px] truncate">
+                  <p className="text-muted-foreground text-base truncate">
                     Manage database users, roles, and licenses manually
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Button variant="outline" size="sm" onClick={fetchUsers} disabled={fetchingUsers} className="bg-card text-foreground hover:bg-accent text-xs h-7">
+                  <Button variant="outline" size="sm" onClick={fetchUsers} disabled={fetchingUsers} className="bg-card text-foreground hover:bg-accent text-base h-7">
                     {fetchingUsers ? <Loader2 className="size-3 animate-spin" /> : "Refresh"}
                   </Button>
-                  <Button size="sm" onClick={() => setShowCreateDialog(true)} className="bg-amber-500 hover:bg-amber-600 text-white text-xs h-7">
+                  <Button size="sm" onClick={() => setShowCreateDialog(true)} className="bg-amber-500 hover:bg-amber-600 text-white text-base h-7">
                     <Plus className="size-3 mr-1" /> Create Admin
                   </Button>
                 </div>
@@ -175,8 +175,8 @@ export default function AdminUsersPage() {
                         <Users className="size-3 text-amber-500" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Total Users</p>
-                        <p className="text-sm font-bold text-foreground leading-tight">{dbUsers.length || "..."}</p>
+                        <p className="text-lg text-muted-foreground uppercase tracking-wider font-semibold">Total Users</p>
+                        <p className="text-lg font-bold text-foreground leading-tight">{dbUsers.length || "..."}</p>
                       </div>
                     </div>
                   </div>
@@ -188,8 +188,8 @@ export default function AdminUsersPage() {
                         <Shield className="size-3 text-emerald-500" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Admins</p>
-                        <p className="text-sm font-bold text-foreground leading-tight">{dbUsers.filter(u => u.role === "admin").length || "..."}</p>
+                        <p className="text-lg text-muted-foreground uppercase tracking-wider font-semibold">Admins</p>
+                        <p className="text-lg font-bold text-foreground leading-tight">{dbUsers.filter(u => u.role === "admin").length || "..."}</p>
                       </div>
                     </div>
                   </div>
@@ -199,8 +199,8 @@ export default function AdminUsersPage() {
               {/* Users Table */}
               <Card className="bg-card text-card-foreground">
                 <CardHeader className="px-3 pt-3 pb-2">
-                  <CardTitle className="text-sm font-bold text-foreground">Database Users</CardTitle>
-                  <CardDescription className="text-muted-foreground text-[10px]">
+                  <CardTitle className="text-lg font-bold text-foreground">Database Users</CardTitle>
+                  <CardDescription className="text-muted-foreground text-base">
                     All user entries from the MongoDB collection with subscription states
                   </CardDescription>
                 </CardHeader>
@@ -208,10 +208,10 @@ export default function AdminUsersPage() {
                   {fetchingUsers ? (
                     <div className="flex justify-center py-6"><Loader2 className="size-5 animate-spin text-amber-500" /></div>
                   ) : dbUsers.length === 0 ? (
-                    <div className="text-center py-6 text-muted-foreground text-xs">No users found.</div>
+                    <div className="text-center py-6 text-muted-foreground text-base">No users found.</div>
                   ) : (
                     <div className="overflow-x-auto -mx-1">
-                      <table className="w-full text-left text-xs min-w-[700px]">
+                      <table className="w-full text-left text-base min-w-[700px]">
                         <thead>
                           <tr className="text-muted-foreground font-semibold">
                             <th className="pb-2 pl-1">Name</th>
@@ -231,14 +231,14 @@ export default function AdminUsersPage() {
                                 <td className="py-2.5 pl-1 font-medium text-foreground whitespace-nowrap">{user.name}</td>
                                 <td className="py-2.5 whitespace-nowrap">{user.email}</td>
                                 <td className="py-2.5">
-                                  <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${user.role === "admin" ? "bg-amber-500/10 text-amber-600 dark:text-amber-400" : "bg-muted text-muted-foreground"}`}>
+                                  <span className={`rounded-full px-1.5 py-0.5 text-base font-semibold ${user.role === "admin" ? "bg-amber-500/10 text-amber-600 dark:text-amber-400" : "bg-muted text-muted-foreground"}`}>
                                     {user.role}
                                   </span>
                                 </td>
                                 <td className="py-2.5">
                                   <div className="flex items-center gap-1.5">
                                     <span className="font-semibold text-foreground">{user.subscriptionPlan || "Free Tier"}</span>
-                                    <span className={`rounded px-1 py-0.2 text-[8px] font-bold uppercase ${
+                                    <span className={`rounded px-1 py-0.2 text-lg font-bold uppercase ${
                                       isSubActive 
                                         ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" 
                                         : isVerificationPending 
@@ -249,7 +249,7 @@ export default function AdminUsersPage() {
                                     </span>
                                   </div>
                                 </td>
-                                <td className="py-2.5 font-mono text-[10px] text-muted-foreground">
+                                <td className="py-2.5 font-mono text-base text-muted-foreground">
                                   {user.subscriptionExpiresAt 
                                     ? new Date(user.subscriptionExpiresAt).toLocaleDateString() 
                                     : "No Expiry / Free"}
@@ -258,7 +258,7 @@ export default function AdminUsersPage() {
                                   <Button 
                                     size="sm" 
                                     onClick={() => handleOpenSubDialog(user)}
-                                    className="bg-blue-600 hover:bg-blue-500 text-white font-bold h-6 px-2 text-[10px] rounded"
+                                    className="bg-blue-600 hover:bg-blue-500 text-white font-bold h-6 px-2 text-base rounded"
                                   >
                                     Manage Subscription
                                   </Button>
@@ -284,33 +284,33 @@ export default function AdminUsersPage() {
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowCreateDialog(false)} />
           <div className="relative w-full max-w-sm rounded-lg bg-card">
             <div className="flex items-center justify-between px-4 py-2.5 border-b border-border/40">
-              <h2 className="text-sm font-bold text-foreground">Create New Admin</h2>
+              <h2 className="text-lg font-bold text-foreground">Create New Admin</h2>
               <button onClick={() => setShowCreateDialog(false)} className="text-muted-foreground hover:text-foreground"><X className="size-4" /></button>
             </div>
             <div className="p-4 space-y-3">
               <div>
-                <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Name</label>
-                <input type="text" value={newUser.name} onChange={(e) => setNewUser({ ...newUser, name: e.target.value })} placeholder="John Doe" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                <label className="text-base font-semibold text-muted-foreground uppercase tracking-wider">Name</label>
+                <input type="text" value={newUser.name} onChange={(e) => setNewUser({ ...newUser, name: e.target.value })} placeholder="John Doe" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
               </div>
               <div>
-                <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Email</label>
-                <input type="email" value={newUser.email} onChange={(e) => setNewUser({ ...newUser, email: e.target.value })} placeholder="admin@example.com" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                <label className="text-base font-semibold text-muted-foreground uppercase tracking-wider">Email</label>
+                <input type="email" value={newUser.email} onChange={(e) => setNewUser({ ...newUser, email: e.target.value })} placeholder="admin@example.com" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
               </div>
               <div>
-                <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Password</label>
-                <input type="password" value={newUser.password} onChange={(e) => setNewUser({ ...newUser, password: e.target.value })} placeholder="••••••••" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                <label className="text-base font-semibold text-muted-foreground uppercase tracking-wider">Password</label>
+                <input type="password" value={newUser.password} onChange={(e) => setNewUser({ ...newUser, password: e.target.value })} placeholder="••••••••" className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-amber-500" />
               </div>
               <div>
-                <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Role</label>
-                <select value={newUser.role} onChange={(e) => setNewUser({ ...newUser, role: e.target.value })} className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-amber-500">
+                <label className="text-base font-semibold text-muted-foreground uppercase tracking-wider">Role</label>
+                <select value={newUser.role} onChange={(e) => setNewUser({ ...newUser, role: e.target.value })} className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-amber-500">
                   <option value="admin">Admin</option>
                   <option value="user">User</option>
                 </select>
               </div>
             </div>
             <div className="flex items-center justify-end gap-2 px-4 py-2.5 border-t border-border/40">
-              <Button variant="outline" size="sm" onClick={() => setShowCreateDialog(false)} className="text-xs h-7">Cancel</Button>
-              <Button size="sm" onClick={handleCreateUser} disabled={creating} className="bg-amber-500 hover:bg-amber-600 text-white text-xs h-7">
+              <Button variant="outline" size="sm" onClick={() => setShowCreateDialog(false)} className="text-base h-7">Cancel</Button>
+              <Button size="sm" onClick={handleCreateUser} disabled={creating} className="bg-amber-500 hover:bg-amber-600 text-white text-base h-7">
                 {creating ? <Loader2 className="size-3 animate-spin mr-1" /> : null}
                 {creating ? "Creating..." : "Create"}
               </Button>
@@ -325,23 +325,23 @@ export default function AdminUsersPage() {
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowSubDialog(false)} />
           <div className="relative w-full max-w-sm rounded-lg bg-card shadow-2xl border border-border/40">
             <div className="flex items-center justify-between px-4 py-2.5 border-b border-border/40">
-              <h2 className="text-sm font-bold text-foreground flex items-center gap-1.5">
+              <h2 className="text-lg font-bold text-foreground flex items-center gap-1.5">
                 <CreditCard className="size-4 text-blue-500" /> Edit Subscription
               </h2>
               <button onClick={() => setShowSubDialog(false)} className="text-muted-foreground hover:text-foreground"><X className="size-4" /></button>
             </div>
             <div className="p-4 space-y-3.5">
-              <div className="bg-accent/40 rounded-lg p-3 text-xs border border-border/20">
+              <div className="bg-accent/40 rounded-lg p-3 text-base border border-border/20">
                 <p>Editing user: <span className="font-bold text-foreground">{editingUser.name}</span></p>
-                <p className="text-[11px] text-muted-foreground">{editingUser.email}</p>
+                <p className="text-base text-muted-foreground">{editingUser.email}</p>
               </div>
 
               <div>
-                <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Subscription Plan</label>
+                <label className="text-base font-semibold text-muted-foreground uppercase tracking-wider">Subscription Plan</label>
                 <select 
                   value={subForm.plan} 
                   onChange={(e) => setSubForm({ ...subForm, plan: e.target.value })}
-                  className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500 border border-border/40"
+                  className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500 border border-border/40"
                 >
                   <option value="Creator Pro">Creator Pro</option>
                   <option value="Starter Pack">Starter Pack</option>
@@ -351,11 +351,11 @@ export default function AdminUsersPage() {
               </div>
 
               <div>
-                <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Subscription Status</label>
+                <label className="text-base font-semibold text-muted-foreground uppercase tracking-wider">Subscription Status</label>
                 <select 
                   value={subForm.status} 
                   onChange={(e) => setSubForm({ ...subForm, status: e.target.value })}
-                  className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500 border border-border/40"
+                  className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500 border border-border/40"
                 >
                   <option value="active">Active</option>
                   <option value="pending_verification">Pending Verification</option>
@@ -365,21 +365,21 @@ export default function AdminUsersPage() {
               </div>
 
               <div>
-                <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1">
+                <label className="text-base font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1">
                   <Calendar className="size-3 text-muted-foreground" /> Expiration Date
                 </label>
                 <input 
                   type="date" 
                   value={subForm.expiresAt} 
                   onChange={(e) => setSubForm({ ...subForm, expiresAt: e.target.value })} 
-                  className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500 border border-border/40" 
+                  className="mt-1 w-full rounded-md bg-background px-2.5 py-1.5 text-base text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500 border border-border/40" 
                 />
-                <p className="text-[9px] text-muted-foreground mt-1">Leave blank to revoke active subscription period check (Free Tier standard).</p>
+                <p className="text-lg text-muted-foreground mt-1">Leave blank to revoke active subscription period check (Free Tier standard).</p>
               </div>
             </div>
             <div className="flex items-center justify-end gap-2 px-4 py-2.5 border-t border-border/40">
-              <Button variant="outline" size="sm" onClick={() => setShowSubDialog(false)} className="text-xs h-7">Cancel</Button>
-              <Button size="sm" onClick={handleSaveSubscription} disabled={savingSub} className="bg-blue-600 hover:bg-blue-500 text-white font-bold h-7 text-xs px-3">
+              <Button variant="outline" size="sm" onClick={() => setShowSubDialog(false)} className="text-base h-7">Cancel</Button>
+              <Button size="sm" onClick={handleSaveSubscription} disabled={savingSub} className="bg-blue-600 hover:bg-blue-500 text-white font-bold h-7 text-base px-3">
                 {savingSub ? <Loader2 className="size-3 animate-spin mr-1" /> : null}
                 {savingSub ? "Saving..." : "Save Changes"}
               </Button>

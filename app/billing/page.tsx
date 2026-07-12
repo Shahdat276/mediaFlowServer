@@ -141,7 +141,7 @@ export default function BillingPage() {
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-2">
           <Loader2 className="size-8 animate-spin text-primary" />
-          <span className="text-sm text-muted-foreground">Loading billing history...</span>
+          <span className="text-lg text-muted-foreground">Loading billing history...</span>
         </div>
       </div>
     );
@@ -173,14 +173,14 @@ export default function BillingPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">Billing History</h1>
-                  <p className="text-muted-foreground text-[11px]">All your payment transactions in one place</p>
+                  <p className="text-muted-foreground text-base">All your payment transactions in one place</p>
                 </div>
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={handleRefresh}
                   disabled={refreshing}
-                  className="h-8 gap-1.5 text-xs"
+                  className="h-8 gap-1.5 text-base"
                 >
                   <RefreshCw className={`size-3.5 ${refreshing ? "animate-spin" : ""}`} />
                   <span className="hidden sm:inline">Refresh</span>
@@ -211,8 +211,8 @@ export default function BillingPage() {
                         </div>
                         <div className="min-w-0">
                           <div className="flex items-center gap-2">
-                            <p className="text-sm font-bold text-foreground truncate">{subscription.plan}</p>
-                            <span className={`inline-flex items-center rounded-full px-1.5 py-0.5 text-[9px] font-bold ${
+                            <p className="text-lg font-bold text-foreground truncate">{subscription.plan}</p>
+                            <span className={`inline-flex items-center rounded-full px-1.5 py-0.5 text-lg font-bold ${
                               subscription.active
                                 ? "bg-emerald-50 text-emerald-600"
                                 : subscription.status === "pending_verification"
@@ -223,7 +223,7 @@ export default function BillingPage() {
                             </span>
                           </div>
                           {subscription.active && subscription.expiresAt ? (
-                            <p className="text-[10px] text-muted-foreground">
+                            <p className="text-lg text-muted-foreground">
                               Expires {new Date(subscription.expiresAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
                               {" · "}
                               <span className={subscription.daysRemaining <= 7 ? "text-amber-600 font-semibold" : ""}>
@@ -231,9 +231,9 @@ export default function BillingPage() {
                               </span>
                             </p>
                           ) : subscription.status === "pending_verification" ? (
-                            <p className="text-[10px] text-amber-600">Awaiting admin verification</p>
+                            <p className="text-lg text-amber-600">Awaiting admin verification</p>
                           ) : (
-                            <p className="text-[10px] text-muted-foreground">No active subscription</p>
+                            <p className="text-lg text-muted-foreground">No active subscription</p>
                           )}
                         </div>
                       </div>
@@ -242,7 +242,7 @@ export default function BillingPage() {
                         <Link href="/checkout?plan=Pro&billing=monthly">
                           <Button
                             size="sm"
-                            className={`text-xs font-bold gap-1.5 ${
+                            className={`text-base font-bold gap-1.5 ${
                               subscription.active
                                 ? "bg-primary hover:bg-primary/90 text-primary-foreground"
                                 : "bg-amber-500 hover:bg-amber-600 text-white"
@@ -266,8 +266,8 @@ export default function BillingPage() {
                       <Receipt className="size-3.5 text-blue-500" />
                     </div>
                     <div>
-                      <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Total</p>
-                      <p className="text-sm font-bold text-foreground">{stats.totalTransactions}</p>
+                      <p className="text-lg text-muted-foreground uppercase tracking-wider font-semibold">Total</p>
+                      <p className="text-lg font-bold text-foreground">{stats.totalTransactions}</p>
                     </div>
                   </div>
                 </Card>
@@ -277,8 +277,8 @@ export default function BillingPage() {
                       <TrendingUp className="size-3.5 text-emerald-500" />
                     </div>
                     <div>
-                      <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Total Paid</p>
-                      <p className="text-sm font-bold text-foreground">৳{stats.totalPaid.toLocaleString()}</p>
+                      <p className="text-lg text-muted-foreground uppercase tracking-wider font-semibold">Total Paid</p>
+                      <p className="text-lg font-bold text-foreground">৳{stats.totalPaid.toLocaleString()}</p>
                     </div>
                   </div>
                 </Card>
@@ -288,8 +288,8 @@ export default function BillingPage() {
                       <CheckCircle2 className="size-3.5 text-emerald-500" />
                     </div>
                     <div>
-                      <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Approved</p>
-                      <p className="text-sm font-bold text-foreground">{stats.approved}</p>
+                      <p className="text-lg text-muted-foreground uppercase tracking-wider font-semibold">Approved</p>
+                      <p className="text-lg font-bold text-foreground">{stats.approved}</p>
                     </div>
                   </div>
                 </Card>
@@ -299,8 +299,8 @@ export default function BillingPage() {
                       <Clock className="size-3.5 text-amber-500" />
                     </div>
                     <div>
-                      <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Pending</p>
-                      <p className="text-sm font-bold text-foreground">{stats.pending}</p>
+                      <p className="text-lg text-muted-foreground uppercase tracking-wider font-semibold">Pending</p>
+                      <p className="text-lg font-bold text-foreground">{stats.pending}</p>
                     </div>
                   </div>
                 </Card>
@@ -312,14 +312,14 @@ export default function BillingPage() {
                   <button
                     key={tab.key}
                     onClick={() => handleTabChange(tab.key)}
-                    className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    className={`px-3 py-1.5 rounded-md text-base font-bold transition-all flex items-center gap-1.5 ${
                       activeTab === tab.key
                         ? "bg-background text-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     {tab.label}
-                    <span className={`text-[9px] px-1 rounded-full ${
+                    <span className={`text-lg px-1 rounded-full ${
                       activeTab === tab.key ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"
                     }`}>
                       {tab.count}
@@ -333,15 +333,15 @@ export default function BillingPage() {
                 <Card className="bg-card text-card-foreground">
                   <CardContent className="flex flex-col items-center justify-center py-12">
                     <Receipt className="size-10 text-muted-foreground/40 mb-3" />
-                    <p className="text-sm font-medium text-foreground">
+                    <p className="text-lg font-medium text-foreground">
                       {activeTab === "all" ? "No billing history yet" : `No ${activeTab} transactions`}
                     </p>
-                    <p className="text-xs text-muted-foreground mt-1">
+                    <p className="text-base text-muted-foreground mt-1">
                       {activeTab === "all" ? "Your payment transactions will appear here" : "Try selecting a different filter"}
                     </p>
                     {activeTab === "all" && (
                       <Link href="/checkout?plan=Pro&billing=monthly" className="mt-4">
-                        <Button className="bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-bold gap-1.5">
+                        <Button className="bg-primary hover:bg-primary/90 text-primary-foreground text-base font-bold gap-1.5">
                           <CreditCard className="size-3.5" /> Make a Payment
                         </Button>
                       </Link>
@@ -372,22 +372,22 @@ export default function BillingPage() {
                                 </div>
                                 <div className="min-w-0">
                                   <div className="flex items-center gap-2 flex-wrap">
-                                    <p className="text-sm font-bold text-foreground truncate">{tx.plan}</p>
-                                    <span className={`inline-flex items-center rounded-full px-1.5 py-0.5 text-[9px] font-bold ${cfg.bg} ${cfg.color}`}>
+                                    <p className="text-lg font-bold text-foreground truncate">{tx.plan}</p>
+                                    <span className={`inline-flex items-center rounded-full px-1.5 py-0.5 text-lg font-bold ${cfg.bg} ${cfg.color}`}>
                                       {cfg.label}
                                     </span>
-                                    <span className="text-[9px] text-muted-foreground capitalize hidden sm:inline">
+                                    <span className="text-lg text-muted-foreground capitalize hidden sm:inline">
                                       {tx.billing}
                                     </span>
                                   </div>
-                                  <p className="text-[10px] text-muted-foreground">
+                                  <p className="text-lg text-muted-foreground">
                                     {tx.paymentMethod === "bkash" ? "bKash" : "Nagad"} · TxnID: <span className="font-mono">{tx.transactionId}</span>
                                   </p>
                                 </div>
                               </div>
                               <div className="text-right shrink-0">
-                                <p className="text-sm font-black text-foreground">৳{tx.amount?.toLocaleString()}</p>
-                                <p className="text-[10px] text-muted-foreground">
+                                <p className="text-lg font-black text-foreground">৳{tx.amount?.toLocaleString()}</p>
+                                <p className="text-lg text-muted-foreground">
                                   {new Date(tx.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                                 </p>
                               </div>
@@ -395,7 +395,7 @@ export default function BillingPage() {
 
                             {/* Expanded Details */}
                             {isExpanded && (
-                              <div className="mt-3 pt-3 border-t border-border space-y-3 text-xs">
+                              <div className="mt-3 pt-3 border-t border-border space-y-3 text-base">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                   <div className="flex items-center gap-1.5 text-muted-foreground">
                                     <CreditCard className="size-3 shrink-0" />
@@ -417,12 +417,12 @@ export default function BillingPage() {
 
                                 {/* Timeline */}
                                 <div className="space-y-1.5">
-                                  <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+                                  <div className="flex items-center gap-2 text-lg text-muted-foreground">
                                     <div className={`size-2 rounded-full ${cfg.dot}`} />
                                     <span>Submitted {new Date(tx.createdAt).toLocaleString()}</span>
                                   </div>
                                   {tx.status === "approved" && tx.approvedAt && (
-                                    <div className="flex items-center gap-2 text-[10px] text-emerald-600">
+                                    <div className="flex items-center gap-2 text-lg text-emerald-600">
                                       <div className="size-2 rounded-full bg-emerald-500" />
                                       <span>Approved {new Date(tx.approvedAt).toLocaleString()}</span>
                                     </div>
@@ -430,7 +430,7 @@ export default function BillingPage() {
                                   {tx.status === "rejected" && (
                                     <>
                                       {tx.rejectedAt && (
-                                        <div className="flex items-center gap-2 text-[10px] text-red-600">
+                                        <div className="flex items-center gap-2 text-lg text-red-600">
                                           <div className="size-2 rounded-full bg-red-500" />
                                           <span>Rejected {new Date(tx.rejectedAt).toLocaleString()}</span>
                                         </div>
@@ -438,7 +438,7 @@ export default function BillingPage() {
                                       {tx.rejectReason && (
                                         <div className="flex items-start gap-1.5 bg-red-50 rounded-md p-2 mt-1">
                                           <AlertTriangle className="size-3 text-red-500 shrink-0 mt-0.5" />
-                                          <span className="text-red-600 text-[10px]">{tx.rejectReason}</span>
+                                          <span className="text-red-600 text-lg">{tx.rejectReason}</span>
                                         </div>
                                       )}
                                     </>
@@ -448,7 +448,7 @@ export default function BillingPage() {
                                 {/* Actions for rejected */}
                                 {tx.status === "rejected" && (
                                   <Link href="/checkout?plan=Pro&billing=monthly">
-                                    <Button size="sm" variant="outline" className="text-xs gap-1.5 mt-1">
+                                    <Button size="sm" variant="outline" className="text-base gap-1.5 mt-1">
                                       <RefreshCw className="size-3" /> Resubmit Payment
                                     </Button>
                                   </Link>
@@ -464,7 +464,7 @@ export default function BillingPage() {
                   {/* Pagination */}
                   {pagination.totalPages > 1 && (
                     <div className="flex items-center justify-between pt-2">
-                      <p className="text-[10px] text-muted-foreground">
+                      <p className="text-lg text-muted-foreground">
                         Showing {((pagination.page - 1) * pagination.limit) + 1}–{Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total}
                       </p>
                       <div className="flex items-center gap-1">
@@ -483,7 +483,7 @@ export default function BillingPage() {
                             variant={p === pagination.page ? "default" : "outline"}
                             size="sm"
                             onClick={() => handlePageChange(p)}
-                            className="h-7 w-7 p-0 text-xs"
+                            className="h-7 w-7 p-0 text-base"
                           >
                             {p}
                           </Button>
