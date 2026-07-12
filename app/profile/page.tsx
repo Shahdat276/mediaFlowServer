@@ -159,7 +159,7 @@ export default function ProfilePage() {
           <AppHeader />
 
           <main className="flex-1 overflow-y-auto">
-            <div className="p-3 sm:p-4 md:p-6 max-w-4xl mx-auto w-full">
+            <div className="p-3 sm:p-4 md:p-6 w-full">
               {/* Page Title */}
               <div className="pb-3 mb-4">
                 <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">My Profile</h1>

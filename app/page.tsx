@@ -477,12 +477,7 @@ export default function Home() {
           <div className="hero-blob-3" style={{ bottom: 0, left: "40%", opacity: 0.6 }} />
 
           <div style={{ position: "relative", maxWidth: 900, margin: "0 auto", padding: "0 24px" }}>
-            {/* Badge */}
-            <div className="animate-slide-up badge-glow" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(99,102,241,0.15)", border: "1px solid rgba(99,102,241,0.4)", borderRadius: 99, padding: "6px 16px", marginBottom: 32, fontSize: "0.8rem", fontWeight: 600, color: "#a5b4fc" }}>
-              <ShieldCheck size={14} />
-              SH Engine v1.0 — 100% Secure & Local Processing
-              <ChevronRight size={12} style={{ opacity: 0.7 }} />
-            </div>
+
 
             {/* Headline */}
             <h1 className="animate-slide-up delay-100" style={{ fontSize: "clamp(2.8rem, 7vw, 5.2rem)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-0.04em", marginBottom: 24, color: "#fff" }}>
